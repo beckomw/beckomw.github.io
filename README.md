@@ -16,7 +16,8 @@ To contact or know more about me please visit my linkedin page or my github port
 
 - [My Linkedin Page](https://www.linkedin.com/in/beckomw/)
 - [Github Portfolio](https://beckomw.github.io/)
-
+- [Resume](Github Resume Link - Wayne .pdf)
+- 
 
 
 
