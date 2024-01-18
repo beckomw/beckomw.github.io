@@ -25,7 +25,7 @@ To contact or know more about me please visit my linkedin page or my github port
 
 
 
-[^1]:My portfolio is pretty simple, I focus on the back-end to ensure things are working effectively and easy to implement saving time and money. I know basic front-end technologies but I prefer to work on the back-end using Java or Python. Most of my code is on a private cloud space, if you want to see more coding examples please ask or you could invite me to an interview. 
+[^1]:My portfolio is pretty simple, I focus on the back-end to ensure things are working effectively and easy to implement saving time and money. I know basic front-end technologies but I prefer to work on the back-end using Java or Python. Most of my code is on a private cloud space.
  
 
 
