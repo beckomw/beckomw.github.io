@@ -6,7 +6,7 @@ Dynamic and results-driven, I bring over 8 years of diverse experience in custom
 ![](college.jpg)
 
 
-My extensive background in recruiting has honed my interpersonal and project managmement skills making me an amazing communicator, collaborator and problem solver. I'm now looking to transition into a back-end development career. This is my github page where I mainly store code for my school projects. I like to use many languages and test many things on this github page.   
+My extensive background in recruiting has honed my interpersonal and project managmement skills making me an amazing communicator, collaborator and problem solver. I'm now looking to transition into a back-end development career. This is my github page where I mainly store code for my school projects. I prefer using Java and Python on Aws.    
 
 
 
