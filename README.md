@@ -16,8 +16,8 @@ To contact or know more about me please visit my linkedin page or my github port
 
 - [My Linkedin Page](https://www.linkedin.com/in/beckomw/)
 - [Github Portfolio](https://beckomw.github.io/)
-- [Resume](Github Resume Link - Wayne .pdf)
-- 
+- [Resume](https://github.com/beckomw/beckomw.github.io/blob/main/GithubResumeLinkWayne%20.pdf)
+- [Academic Program](https://www.linkedin.com/in/beckomw/](https://www.csupueblo.edu/extended-studies/_doc/secsoftdev-backflyer-digital-2.pdf)
 
 
 
