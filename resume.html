@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Switcher</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .resume-container {
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 8.5in; /* Standard letter size width */
+            height: 11in;  /* Standard letter size height */
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resume-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .resume-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.5s ease;
+        }
+
+        .switch-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+
+        .fade-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        <img id="resume-image" src="resume1.jpg" alt="Resume 1">
+        <button class="btn btn-primary switch-button" onclick="switchResume()">Switch Resume</button>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function switchResume() {
+            var img = document.getElementById('resume-image');
+            img.classList.add('fade-out');
+
+            setTimeout(function() {
+                if (img.src.includes('resume1.jpg')) {
+                    img.src = 'resume2.jpg';
+                } else {
+                    img.src = 'resume1.jpg';
+                }
+                img.classList.remove('fade-out');
+                img.classList.add('fade-in');
+            }, 500); // Match the duration of the opacity transition
+        }
+    </script>
+</body>
+</html>
