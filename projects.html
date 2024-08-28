@@ -25,39 +25,49 @@
   </head>
 
   <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+
     <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
-      <div class="container">
-        <a class="navbar-brand d-md-none" href="#">
-          <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
-          Aperture
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasLabel">Aperture</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav flex-grow-1 justify-content-between">
-              <li class="nav-item"><a class="nav-link" href="#">
-                <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
-              </a></li>
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li> 
-              <li class="nav-item"><a class="nav-link" href="resume.html">Resume X </a></li>
-              <div class="clearfix">
-                <div class="spinner-border float-end" role="status">
-                  <span class="visually-hidden">Loading...</span>
+        <div class="container">
+          <a class="navbar-brand d-md-none" href="#">
+            <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
+            Aperture
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasLabel">Wayne Allen Beckom</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav flex-grow-1 justify-content-between">
+                <li class="nav-item"><a class="nav-link" href="#">
+                  <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
+                </a></li>
+                
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li> 
+
+
+
+                <div class="clearfix">
+                  <div class="spinner-border float-end" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
                 </div>
-                <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
-              </div>
-            </ul>
+
+              
+            
+                  <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
+                </a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
     <div style="padding: 100px;">
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -80,8 +90,16 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">Work in progress!!!!</h5>
-              <p class="card-text"> Look I'm getting better and better with time while learning so much software.</p>
-              <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+              <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="#0A66C2" d="M22.225 0H1.771C.792 0 .001.781.001 1.74v20.516c0 .96.791 1.74 1.77 1.74h20.454c.98 0 1.771-.78 1.771-1.74V1.74C23.996.78 23.205 0 22.225 0zM7.082 20.452H3.627V9.036h3.455v11.416zM5.353 7.596c-1.103 0-1.997-.898-1.997-2.005 0-1.108.894-2.006 1.997-2.006 1.104 0 1.998.898 1.998 2.006 0 1.107-.894 2.005-1.998 2.005zm15.099 12.856h-3.452v-5.608c0-1.336-.026-3.056-1.863-3.056-1.865 0-2.151 1.45-2.151 2.949v5.715H9.535V9.036h3.318v1.561h.046c.462-.873 1.592-1.793 3.278-1.793 3.502 0 4.149 2.305 4.149 5.299v6.349z"/>
+                </svg>
+              </a>
+              <p style="padding-top: 10px;" class="card-text"> I'm working on alot of projects with friends and peers. Here are some examples of my current projects.
+               
+                
+              </p>
+             
             </div>
           </div>
         </div>
@@ -89,45 +107,74 @@
     </div>
 
     <div style="padding: 75px;">
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Accordion Item #1
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
+
+
+      <div class="card-group">
+        <div class="card">
+          <img src="storynestlogo.JPG" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">StoryNest - Slack Alternative</h5>
+            <p class="card-text">StoryNest is a locally hosted platform designed for developers to share, discuss, and refine their coding projects through interactive storytelling. The app addresses the need for community-driven learning and problem-solving within smaller, private networks or organizations. By allowing users to create, tag, and interact with stories, StoryNest fosters a supportive environment where developers can connect, learn from one another, and gain feedback on their work.
+            </p>
+            <a href="https://gitlab.com/jdragon2050/storynest" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="#FC6D26" d="M12 22.233l7.071-21.822a.372.372 0 0 0-.356-.487h-4.241c-.161 0-.304.098-.358.246l-1.78 5.418h-3.672l-1.78-5.418a.372.372 0 0 0-.357-.246H5.284a.372.372 0 0 0-.356.487l7.072 21.822a.372.372 0 0 0 .356.246.372.372 0 0 0 .356-.246zM7.38 12.104L4.32 2.877a.372.372 0 0 0-.68-.043L.5 12.104a.372.372 0 0 0 .139.502L12 22.233l11.361-9.627a.372.372 0 0 0 .139-.502l-3.14-9.27a.372.372 0 0 0-.681.043l-3.061 9.227H7.38z"/>
+              </svg>
+            </a>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Accordion Item #2
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
+        <div class="card">
+          <img src="cardealer.JPG" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Car Inventory Software - (React, Django, SQLite, Docker, and more)</h5>
+            <p class="card-text">This assessment project is a CRUD (Create, Read, Update, Delete) app because it encompasses the fundamental operations needed to manage data within its various microservices. The Sales Microservice and Service Microservice both provide a range of API endpoints that allow for the creation, retrieval, updating, and deletion of records. For instance, the Service Microservice allows users to create new technicians and service appointments, list all existing technicians and appointments, update the status of appointments (to "canceled" or "finished"), and delete technicians and appointments. These operations demonstrate the core CRUD functionalities essential for managing and manipulating the application's data.</p>
+            <a href="https://gitlab.com/Beckomw/project-beta" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="#FC6D26" d="M12 22.233l7.071-21.822a.372.372 0 0 0-.356-.487h-4.241c-.161 0-.304.098-.358.246l-1.78 5.418h-3.672l-1.78-5.418a.372.372 0 0 0-.357-.246H5.284a.372.372 0 0 0-.356.487l7.072 21.822a.372.372 0 0 0 .356.246.372.372 0 0 0 .356-.246zM7.38 12.104L4.32 2.877a.372.372 0 0 0-.68-.043L.5 12.104a.372.372 0 0 0 .139.502L12 22.233l11.361-9.627a.372.372 0 0 0 .139-.502l-3.14-9.27a.372.372 0 0 0-.681.043l-3.061 9.227H7.38z"/>
+              </svg>
+            </a>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Accordion Item #3
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
+        <div class="card">
+          <img src="friendtie.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <a href="https://gitlab.com/Beckomw/rpg_demo_main_game_draft" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="#FC6D26" d="M12 22.233l7.071-21.822a.372.372 0 0 0-.356-.487h-4.241c-.161 0-.304.098-.358.246l-1.78 5.418h-3.672l-1.78-5.418a.372.372 0 0 0-.357-.246H5.284a.372.372 0 0 0-.356.487l7.072 21.822a.372.372 0 0 0 .356.246.372.372 0 0 0 .356-.246zM7.38 12.104L4.32 2.877a.372.372 0 0 0-.68-.043L.5 12.104a.372.372 0 0 0 .139.502L12 22.233l11.361-9.627a.372.372 0 0 0 .139-.502l-3.14-9.27a.372.372 0 0 0-.681.043l-3.061 9.227H7.38z"/>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
-    </div>
+              
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
