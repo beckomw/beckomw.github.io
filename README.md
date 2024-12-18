@@ -15,8 +15,7 @@ My extensive background in recruiting has honed my interpersonal and project man
 To contact or know more about me please visit my linkedin page or my github portfolio.  [^1]
 
 - [My Linkedin Page](https://www.linkedin.com/in/beckomw/)
-- [Github Portfolio](https://beckomw.github.io/)
-- [Resume](https://github.com/beckomw/beckomw.github.io/blob/main/GithubResumeLinkWayne%20.pdf)
+- [Github Portfolio](https://beckomw.github.io/projects.html)
 - [Academic Program](https://www.csupueblo.edu/extended-studies/_doc/secsoftdev-backflyer-digital-2.pdf)
 
 
