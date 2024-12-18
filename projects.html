@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Resume</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #FEF5EF;
+            color: #584B53;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px; /* Rounded borders */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow */
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+        }
+        .section:hover {
+            transform: translateY(-10px); /* Lift effect on hover */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
+        }
+        .project, .employer {
+            margin-bottom: 15px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+        .project:hover, .employer:hover {
+            opacity: 1;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .section:hover {
+                transform: translateY(-5px); /* Reduced lift on mobile */
+            }
+        }
+        /* Additional hover animation */
+        @keyframes popIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <p>Professional Title | Location</p>
+    </header>
+
+    <section class="section" id="introduction">
+        <h2>Professional Objective</h2>
+        <p>A brief statement about your career goals and professional aspirations. What are you passionate about? What kind of opportunities are you seeking?</p>
+    </section>
+
+    <section class="section" id="projects">
+        <h2>Recent Projects</h2>
+        <div class="project">
+            <h3>Project Name 1</h3>
+            <p>Brief description of the project, technologies used, and key achievements.</p>
+        </div>
+        <div class="project">
+            <h3>Project Name 2</h3>
+            <p>Brief description of the project, technologies used, and key achievements.</p>
+        </div>
+    </section>
+
+    <section class="section" id="employment">
+        <h2>Recent Employers</h2>
+        <div class="employer">
+            <h3>Company Name 1</h3>
+            <p>Job Title | Duration</p>
+            <p>Key responsibilities and notable achievements.</p>
+        </div>
+        <div class="employer">
+            <h3>Company Name 2</h3>
+            <p>Job Title | Duration</p>
+            <p>Key responsibilities and notable achievements.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Contact Information | Email | LinkedIn | GitHub</p>
+    </footer>
+
+    <script>
+        // Optional: Add some interactive elements
+        document.querySelectorAll('.section').forEach(section => {
+            section.addEventListener('mouseenter', (e) => {
+                e.target.style.animation = 'popIn 0.3s ease forwards';
+            });
+
+            section.addEventListener('mouseleave', (e) => {
+                e.target.style.animation = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
