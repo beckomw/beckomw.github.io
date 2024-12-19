@@ -4,6 +4,341 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayne Beckom | Software Engineer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a4a4a;
+            --accent: #3498db;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--primary);
+            line-height: 1.8;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--accent) !important;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(52, 152, 219, 0.1), transparent), url('hero-bg.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            padding: 12px 24px;
+            transition: transform 0.3s;
+        }
+
+        .btn-accent:hover {
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="beckomw.github.io">Wayne Beckom</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:Waynebeckom@outlook.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Wayne Beckom</h1>
+            <p>Software Engineer | Creating Efficient, Scalable Solutions</p>
+            <a href="#about" class="btn btn-accent">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container py-5">
+        <h2 class="section-title" data-aos="fade-up">About Me</h2>
+        <p data-aos="fade-up">
+            Software Engineer leveraging 5 years of NYC finance recruitment experience to bring a unique perspective 
+            to technical solutions. Transitioned to software development through intensive full-stack training, 
+            combining technical expertise with proven collaboration and client relationship skills. For more examples please visit my Gitlab and Github repositories.
+        </p>
+        <div class="row mt-4" data-aos="fade-up">
+            <div class="col-12">
+                <span class="badge bg-info text-dark mx-1">Python/Django</span>
+                <span class="badge bg-info text-dark mx-1">React/JavaScript</span>
+                <span class="badge bg-info text-dark mx-1">HTML/CSS</span>
+                <span class="badge bg-info text-dark mx-1">SQL</span>
+                <span class="badge bg-info text-dark mx-1">C++/C#</span>
+                <span class="badge bg-info text-dark mx-1">AWS</span>
+                <span class="badge bg-info text-dark mx-1">Agile Development</span>
+                <span class="badge bg-info text-dark mx-1">CI/CD</span>
+                <span class="badge bg-info text-dark mx-1">Git</span>
+                <span class="badge bg-info text-dark mx-1">Auth0</span>
+                <span class="badge bg-info text-dark mx-1">Jest/Pytest</span>
+                <span class="badge bg-info text-dark mx-1">Node.js</span>
+                <span class="badge bg-info text-dark mx-1">Docker</span>
+                <span class="badge bg-info text-dark mx-1">PostgreSQL</span>
+                <span class="badge bg-info text-dark mx-1">REST APIs</span>
+                <span class="badge bg-info text-dark mx-1">Blender</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-light py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Current Projects</h2>
+            <div class="row g-4">
+                <!-- Project Card 1 -->
+                <div class="col-md-6" data-aos="fade-up">
+                    <div class="card project-card">
+                        <img src="storynestimage.png" class="card-img-top" alt="StoryNest">
+                        <div class="card-body">
+                            <h5 class="card-title">StoryNest</h5>
+                            <p class="card-text">A streamlined Slack alternative built with Django, Auth0, React, and PostgreSQL.</p>
+                            <a href="https://gitlab.com/Beckomw/storynest" class="btn btn-accent">View Repository</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card project-card">
+                        <img src="embarkdemopic.png" class="card-img-top" alt="Embark Demo">
+                        <div class="card-body">
+                            <h5 class="card-title">Embark Demo</h5>
+                            <p class="card-text">An RPG under development using Godot, Blender and React Native for Windows(Xbox)</p>
+                            <a href="#" class="btn btn-accent">Coming Soon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayne Beckom | Software Engineer</title>
     <style>
         :root {
             --primary: #1a1a1a;
@@ -231,4 +566,4 @@
         </footer>
     </div>
 </body>
-</html>
+</html>  -->
