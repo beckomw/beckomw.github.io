@@ -3,280 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wayne's Projects</title>
+    <title>Wayne Beckom | Software Engineer</title>
     <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a4a4a;
+            --accent: #3498db;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --texture: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
 
-
-            /* CSS */
-.button-82-pushable {
-    position: relative;
-    border: none;
-    background: transparent;
-    padding: 0;
-    cursor: pointer;
-    outline-offset: 4px;
-    transition: filter 250ms;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-  }
-  
-  .button-82-shadow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    background: hsl(0deg 0% 0% / 0.25);
-    will-change: transform;
-    transform: translateY(2px);
-    transition:
-      transform
-      600ms
-      cubic-bezier(.3, .7, .4, 1);
-  }
-  
-  .button-82-edge {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    background: linear-gradient(
-      to left,
-      hsl(340deg 100% 16%) 0%,
-      hsl(340deg 100% 32%) 8%,
-      hsl(340deg 100% 32%) 92%,
-      hsl(340deg 100% 16%) 100%
-    );
-  }
-  
-  .button-82-front {
-    display: block;
-    position: relative;
-    padding: 12px 27px;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    color: white;
-    background: hsl(345deg 100% 47%);
-    will-change: transform;
-    transform: translateY(-4px);
-    transition:
-      transform
-      600ms
-      cubic-bezier(.3, .7, .4, 1);
-  }
-  
-  @media (min-width: 768px) {
-    .button-82-front {
-      font-size: 1.25rem;
-      padding: 12px 42px;
-    }
-  }
-  
-  .button-82-pushable:hover {
-    filter: brightness(110%);
-    -webkit-filter: brightness(110%);
-  }
-  
-  .button-82-pushable:hover .button-82-front {
-    transform: translateY(-6px);
-    transition:
-      transform
-      250ms
-      cubic-bezier(.3, .7, .4, 1.5);
-  }
-  
-  .button-82-pushable:active .button-82-front {
-    transform: translateY(-2px);
-    transition: transform 34ms;
-  }
-  
-  .button-82-pushable:hover .button-82-shadow {
-    transform: translateY(4px);
-    transition:
-      transform
-      250ms
-      cubic-bezier(.3, .7, .4, 1.5);
-  }
-  
-  .button-82-pushable:active .button-82-shadow {
-    transform: translateY(1px);
-    transition: transform 34ms;
-  }
-  
-  .button-82-pushable:focus:not(:focus-visible) {
-    outline: none;
-  }
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #FEF5EF;
-            color: #584B53;
-            line-height: 1.6;
-            max-width: 800px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            background-image: var(--texture);
+            color: var(--primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
+        }
+
+        .header {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), var(--texture);
+            padding: 4rem 2rem;
             text-align: center;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-        h1, h2 {
-            margin-bottom: 20px;
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .section {
-            margin-bottom: 30px;
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 15px; /* Rounded borders */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow */
-            transition: all 0.3s ease; /* Smooth transition for hover effects */
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .section:hover {
-            transform: translateY(-10px); /* Lift effect on hover */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
-        }
-        .project, .employer {
-            margin-bottom: 15px;
-            opacity: 0.9;
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
             transition: opacity 0.3s ease;
         }
-        .project:hover, .employer:hover {
+
+        .section:hover::before {
             opacity: 1;
         }
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .section:hover {
-                transform: translateY(-5px); /* Reduced lift on mobile */
-            }
+
+        .section:hover {
+            transform: translateY(-5px);
         }
-        /* Additional hover animation */
-        @keyframes popIn {
-            from {
-                transform: scale(0.95);
-                opacity: 0.8;
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .project {
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, rgba(52, 152, 219, 0.05), transparent);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.2), transparent);
+            transform: translateY(-100%);
+            transition: transform 0.2s ease;
+        }
+
+        .button:hover::after {
+            transform: translateY(0);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
             }
-            to {
-                transform: scale(1);
-                opacity: 1;
+            
+            .header {
+                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-    
-    <section class="section" id="introduction">
-        <h3>Wayne Allen Beckom </h3>
-        <p>Bilingual (English/Spanish) Software Engineer focused on clean code practices and modern development methodologies. Experienced in collaborative development with strong attention to design principles and emerging technologies. Seeking to apply technical skills in an entry-level position while contributing to meaningful projects that challenge me as an engineer.</p>
-    </section>
+    <div class="container">
+        <header class="header">
+            <h1>Wayne Allen Beckom</h1>
+            
+        </header>
 
-
-
-
-
-
-
-
-    
-    <section class="section" id="projects">
-        <h2>Current Projects</h2>
-        <div class="project">
-            <h3>StoryNest</h3>
-            <p>A low profile slack alternative: 
-                (Django, Auth0, React, and PostgreSQL)
-               
-            </p>
-
-            You can also see my other projects on Gitlab.
-            <p>    <a href="https://gitlab.com/Beckomw/storynest">
-                <button class="button-82-pushable" role="button">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                      Repo Link 
-                    </span>
-                  </button>
-                  </a>
-
-
-        </p>
-        </div>
-        <div class="project">
-            <h3>Embark Demo</h3>
-            <p>   </p>
-            <p>An action rpg being built with C++, Coming soon</p>
-        </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-    <section class="section" id="employment">
-        <h2>Recent Software Experience</h2>
-        <div class="employer">
-            <h3>Next Chapter - Software Engineering Apprentice (January 2024 - Present)</h3>
-            <h5> 
-                <ul>
-                    <li>Collaborated with an agile team of 10 engineers, to identify technical issues and articulate our ability to provide a solution with open source software. Focusing on key performance indicators that are important to the business software objectives. </li>
-                    <li>Specifying, architecting, prototyping, developing, and testing applications while consistently following best practices of software design practices and organizing the effort via Github/Gitlab.</li>
-                    
-                </ul>
+        <section class="section" id="introduction">
+            <h2>About Me</h2>
+            <p>Software Engineer leveraging 5 years of NYC finance recruitment experience to bring a unique perspective to technical solutions. Transitioned to software development through intensive full-stack training, combining technical expertise with proven collaboration and client relationship skills. Based in Colorado, focused on creating efficient, scalable solutions that align with business objectives.</p>
+            <div class="skills">
+                <span class="skill-tag">Python/Django</span>
+                <span class="skill-tag">React/JavaScript</span>
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">SQL</span>  
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">C++/C#</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Agile Development</span>
+                <span class="skill-tag">CI/CD</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Auth0</span>
+                <span class="skill-tag">Jest/Pytest</span>
                 
-            </h5>
-            <h4>Education</h4>
-            <ul>
-                <li>Hack Reactor | Advanced Software Engineering Immersive Bootcamp              Sep ‘24</li>
-                <li>Arapahoe Community College | Associate of Computer Science Graduating    Dec ‘25</li>
-                <li>Amazon Web Services Certified Cloud Practitioner Certificate   </li>
-                <li>Google IT Support Professional Certificate </li>
-            </ul>
-        </div>
-        
-    </section>
+            </div>
+        </section>
 
-    <footer>
+        <section class="section" id="projects">
+            <h2>Current Projects</h2>
+            <div class="project">
+                <h3>StoryNest</h3>
+                <p>A streamlined Slack alternative built with Django, Auth0, React, and PostgreSQL</p>
+                <a href="https://gitlab.com/Beckomw/storynest" class="button">View Gitlab Repository</a>
+            </div>
+            <div class="project">
+                <h3>Embark Demo</h3>
+                <p>Action RPG under development in C++</p>
+                <span style="color: var(--accent); font-style: italic;">Coming soon</span>
+            </div>
+        </section>
 
+        <section class="section" id="experience">
+            <h2>Experience & Education</h2>
+            <div class="project">
+                <h3>Next Chapter - Software Engineering Apprentice</h3>
+                <p>January 2024 - Present</p>
+                <ul>
+                    <li>Collaborate with agile teams to develop and implement open source solutions</li>
+                    <li>Apply software design best practices in development and testing phases</li>
+                </ul>
+            </div>
+            <div class="project">
+                <h3>Education & Certifications</h3>
+                <ul>
+                    <li>Hack Reactor | Advanced Software Engineering Immersive</li>
+                    <li>Arapahoe Community College | Associate of Computer Science (In Progress)</li>
+                    <li>AWS Certified Cloud Practitioner</li>
+                    <li>Google IT Support Professional Certificate</li>
+                </ul>
+            </div>
+        </section>
 
-
-        <a href="mailto:WayneBeckom@outlook.com">
-        <button class="button-82-pushable" role="button">
-            <span class="button-82-shadow"></span>
-            <span class="button-82-edge"></span>
-            <span class="button-82-front text">
-              Email Me! 
-            </span>
-          </button>
-          </a>
-
-
-
-
-       
-    </footer>
-
-
-
-
-    <script>
-        // Optional: Add some interactive elements
-        document.querySelectorAll('.section').forEach(section => {
-            section.addEventListener('mouseenter', (e) => {
-                e.target.style.animation = 'popIn 0.3s ease forwards';
-            });
-
-            section.addEventListener('mouseleave', (e) => {
-                e.target.style.animation = 'none';
-            });
-        });
-    </script>
+        <footer style="text-align: center; margin-top: 3rem;">
+            <a href="mailto:WayneBeckom@outlook.com" class="button">Contact Me</a>
+        </footer>
+    </div>
 </body>
 </html>
