@@ -3,51 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
-    <style>
-        body {
-            background-color: #FAF3E0;
-            color: #333;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .header, .post {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .post h2 {
-            color: #5DADE2;
-        }
-        .post p {
-            text-align: justify;
-        }
-    </style>
+    <title>Projects</title>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>My Blog</h1>
-            <p>Welcome to my blog! Here you'll find my latest posts.</p>
-        </div>
-        <div class="post">
-            <h2>Sample Blog Post Title</h2>
-            <p>This is a sample blog post. You can easily copy and paste this template for your new blog entries. Enjoy writing!</p>
-        </div>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; display: flex; flex-direction: row; align-items: flex-start; justify-content: center;">
+
+    <div style="writing-mode: vertical-rl; text-orientation: mixed; margin: 20px 20px 0 0; font-size: 24px; color: #333;">
+        <h1>My Artistry</h1>
     </div>
+
+    <div style="position: relative; width: 70%; max-width: 800px;">
+
+        <div style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 20px 0; padding: 20px; transition: transform 0.2s; position: relative;">
+            <div style="background: linear-gradient(to top right, rgba(173, 216, 230, 0.3), transparent 75%); position: absolute; top: 0; right: 0; bottom: 0; left: 0; border-radius: 10px;"></div>
+            <h2 style="color: #333; position: relative; z-index: 1;">Project Title</h2>
+            <p style="color: #666; position: relative; z-index: 1;">Description of the project goes here. This is a brief summary of what the project is about.</p>
+        </div>
+
+        <div style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 20px 0; padding: 20px; transition: transform 0.2s; position: relative;">
+            <div style="background: linear-gradient(to top right, rgba(173, 216, 230, 0.3), transparent 75%); position: absolute; top: 0; right: 0; bottom: 0; left: 0; border-radius: 10px;"></div>
+            <h2 style="color: #333; position: relative; z-index: 1;">Project Title</h2>
+            <p style="color: #666; position: relative; z-index: 1;">Description of the project goes here. This is a brief summary of what the project is about.</p>
+        </div>
+
+        <!-- Add more project divs as needed -->
+
+    </div>
+
+    <script>
+        document.querySelectorAll('div[style*="transition: transform"]').forEach(div => {
+            div.addEventListener('mouseover', () => {
+                div.style.transform = 'rotate(5deg)';
+            });
+            div.addEventListener('mouseout', () => {
+                div.style.transform = 'rotate(0deg)';
+            });
+        });
+    </script>
+
 </body>
 </html>
 
