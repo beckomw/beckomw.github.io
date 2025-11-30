@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embark Software & Video</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #1a2332;
+            --secondary-navy: #2d3e50;
+            --accent-blue: #3b5998;
+            --accent-gold: #d4af37;
+            --text-gray: #6c757d;
+            --light-gray: #f8f9fa;
+            --border-gray: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--primary-navy);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .navbar-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-navy) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-accent {
+            color: var(--accent-gold);
+        }
+
+        .nav-link {
+            color: var(--primary-navy) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 1.2rem;
+            padding: 0.5rem 0 !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue) !important;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 85vh;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-cta {
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .btn-primary-custom {
+            background: var(--accent-gold);
+            color: white;
+            padding: 1rem 2.8rem;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-primary-custom:hover {
+            background: transparent;
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary-custom {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.8rem;
+            border: 2px solid white;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        .btn-secondary-custom:hover {
+            background: white;
+            color: var(--primary-navy);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: white;
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.08);
+            padding: 3rem 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            border-right: 1px solid var(--border-gray);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-suffix {
+            color: var(--accent-gold);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Who We Are Section */
+        .who-section {
+            padding: 7rem 0;
+            background: white;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .section-text {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 7rem 0;
+            background: var(--light-gray);
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent-gold);
+            transition: height 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .service-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(212, 175, 55, 0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+
+        .service-link i {
+            margin-left: 0.5rem;
+            transition: margin-left 0.3s ease;
+        }
+
+        .service-link:hover i {
+            margin-left: 1rem;
+        }
+
+        /* Core Values */
+        .values-section {
+            padding: 7rem 0;
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover .value-icon {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        .value-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .value-description {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Thought Leadership */
+        .thought-section {
+            padding: 7rem 0;
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        .thought-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .thought-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .thought-category {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .thought-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .thought-excerpt {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .thought-link {
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .thought-link:hover {
+            color: white;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 7rem 0;
+            background: var(--light-gray);
+        }
+
+        .team-content {
+            background: white;
+            padding: 4rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .team-image {
+            height: 100%;
+            min-height: 500px;
+            object-fit: cover;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-navy) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Progress */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-gold);
+            z-index: 10000;
+            transition: width 0.1s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-gray);
+            }
+
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+
+            .btn-secondary-custom {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .team-image {
+                min-height: 400px;
+                margin-bottom: 2rem;
+            }
+
+            .team-content {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="brand-accent">Embark</span> Software & Digital
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#who-we-are">Who We Are</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#values">Values</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#insights">Insights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 hero-content">
+                    <h2 class="hero-subtitle">Client-Focused, Innovation-Driven.</h2>
+                    <h1 class="hero-title">An IT & Design Agency<br>That Does More</h1>
+                    <p class="hero-description">
+                        We are a leading independent digital solutions firm. Our success begins and ends with a relentless commitment to delivering world-class strategic technology and design expertise.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn-primary-custom">Get Started</a>
+                        <a href="#who-we-are" class="btn-secondary-custom">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 stat-item">
+                    <span class="stat-number"><span class="counter" data-target="250">0</span><span class="stat-suffix">+</span></span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <span class="stat-number"><span class="counter" data-target="2015">0</span></span>
+                    <span class="stat-label">Year Founded</span>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <span class="stat-number"><span class="counter" data-target="15">0</span><span class="stat-suffix">+</span></span>
+                    <span class="stat-label">Countries Served</span>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <span class="stat-number">$<span class="counter" data-target="50">0</span><span class="stat-suffix">M+</span></span>
+                    <span class="stat-label">Client Value Created</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="who-section" id="who-we-are">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 fade-in-section">
+                    <h3 class="section-label">Who We Are</h3>
+                    <h2 class="section-title">A Trusted Partner in Digital Transformation</h2>
+                    <p class="section-text">
+                        We are a leading independent software and digital solutions firm specializing in web design, development, and IT consulting. Our success is built on a foundation of strategic thinking, technical excellence, and an unwavering commitment to our clients' objectives.
+                    </p>
+                    <p class="section-text">
+                        Founded in 2015, Embark has grown to become a trusted advisor to businesses across 15 countries. We combine creative design with robust technology solutions to deliver digital experiences that drive measurable business results.
+                    </p>
+                    <p class="section-text">
+                        Our team brings together expertise in user experience design, full-stack development, cloud architecture, and digital strategy. This multidisciplinary approach allows us to address complex business challenges with comprehensive, integrated solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 fade-in-section">
+                    <h3 class="section-label">Our Services</h3>
+                    <h2 class="section-title">Comprehensive Digital Solutions</h2>
+                    <p class="section-text">
+                        We offer end-to-end digital services designed to transform your business and accelerate growth.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 fade-in-section">
+                    <div class="service-card">
+                        <div class="service-number">01</div>
+                        <h3 class="service-title">Strategic Web Design</h3>
+                        <p class="service-description">
+                            User-centered design that aligns with your business objectives. We create compelling digital experiences that engage audiences and drive conversions through thoughtful UX/UI design and brand strategy.
+                        </p>
+                        <a href="#" class="service-link">
+                            Explore Design Services <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 fade-in-section">
+                    <div class="service-card">
+                        <div class="service-number">02</div>
+                        <h3 class="service-title">Custom Development</h3>
+                        <p class="service-description">
+                            Enterprise-grade web and mobile applications built with modern frameworks and scalable architecture. From e-commerce platforms to complex web applications, we engineer solutions built to perform.
+                        </p>
+                        <a href="#" class="service-link">
+                            Explore Development <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 fade-in-section">
+                    <div class="service-card">
+                        <div class="service-number">03</div>
+                        <h3 class="service-title">IT Consulting & Strategy</h3>
+                        <p class="service-description">
+                            Strategic technology guidance to help you navigate digital transformation. We provide expert counsel on technology selection, cloud migration, security, and IT infrastructure optimization.
+                        </p>
+                        <a href="#" class="service-link">
+                            Explore Consulting <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 fade-in-section">
+                    <div class="service-card">
+                        <div class="service-number">04</div>
+                        <h3 class="service-title">Digital Transformation</h3>
+                        <p class="service-description">
+                            End-to-end transformation initiatives that modernize operations and unlock new capabilities. We help organizations leverage technology to innovate, compete, and grow in the digital economy.
+                        </p>
+                        <a href="#" class="service-link">
+                            Explore Transformation <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="values-section" id="values">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 fade-in-section">
+                    <h3 class="section-label">Core Values</h3>
+                    <h2 class="section-title">Principles That Guide Our Work</h2>
+                    <p class="section-text">
+                        Our values are the foundation of our culture and the standard by which we measure our success.
+                    </p>
+                </div>
+            </div>
+            <div class="values-grid">
+                <div class="value-item fade-in-section">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="value-title">Clients First</h4>
+                    <p class="value-description">Your success is our success. We prioritize client objectives above all else.</p>
+                </div>
+                <div class="value-item fade-in-section">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 class="value-title">Integrity</h4>
+                    <p class="value-description">We operate with the highest ethical standards in everything we do.</p>
+                </div>
+                <div class="value-item fade-in-section">
+                    <div class="value-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h4 class="value-title">Excellence</h4>
+                    <p class="value-description">We deliver exceptional quality and strive for continuous improvement.</p>
+                </div>
+                <div class="value-item fade-in-section">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4 class="value-title">Partnership</h4>
+                    <p class="value-description">We build long-term relationships based on mutual trust and collaboration.</p>
+                </div>
+                <div class="value-item fade-in-section">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4 class="value-title">Innovation</h4>
+                    <p class="value-description">We embrace new technologies and approaches to solve complex challenges.</p>
+                </div>
+                <div class="value-item fade-in-section">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="value-title">Results-Driven</h4>
+                    <p class="value-description">We focus on delivering measurable business outcomes for our clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- 
+
+     Thought Leadership Section 
+    <section class="thought-section" id="insights">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 fade-in-section">
+                    <h3 class="section-label">Thought Leadership</h3>
+                    <h2 class="section-title">Insights & Analysis</h2>
+                    <p class="section-text">
+                        Explore our latest perspectives on digital transformation, technology trends, and business strategy.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 fade-in-section">
+                    <div class="thought-card">
+                        <div class="thought-category">Digital Strategy</div>
+                        <h3 class="thought-title">The Future of Web Design: Trends Shaping 2024</h3>
+                        <p class="thought-excerpt">
+                            An in-depth analysis of emerging design patterns and user experience innovations transforming the digital landscape.
+                        </p>
+                        <a href="#" class="thought-link">
+                            Read More <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in-section">
+                    <div class="thought-card">
+                        <div class="thought-category">Technology</div>
+                        <h3 class="thought-title">Cloud-First Strategies for Enterprise Growth</h3>
+                        <p class="thought-excerpt">
+                            How leading organizations are leveraging cloud infrastructure to drive scalability and operational efficiency.
+                        </p>
+                        <a href="#" class="thought-link">
+                            Read More <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in-section">
+                    <div class="thought-card">
+                        <div class="thought-category">Business Impact</div>
+                        <h3 class="thought-title">Measuring ROI in Digital Transformation</h3>
+                        <p class="thought-excerpt">
+                            Key metrics and frameworks for evaluating the business impact of technology investments and digital initiatives.
+                        </p>
+                        <a href="#" class="thought-link">
+                            Read More <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="row align-items-stretch">
+                <div class="col-lg-6 p-0">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=800&fit=crop" alt="Our Team" class="team-image">
+                </div>
+                <div class="col-lg-6 p-0">
+                    <div class="team-content fade-in-section">
+                        <h3 class="section-label">Join Our Team</h3>
+                        <h2 class="section-title">Building the Future Together</h2>
+                        <p class="section-text">
+                            Embark Software & Digital is one of the fastest-growing independent technology firms. We are committed to fostering a culture centered around professional growth, mentorship, and collaborative excellence.
+                        </p>
+                        <p class="section-text">
+                            Our team members work on challenging projects for leading organizations, gain exposure to cutting-edge technologies, and have the opportunity to make a meaningful impact on businesses worldwide.
+                        </p>
+                        <p class="section-text">
+                            We invest heavily in our people through continuous learning opportunities, career development programs, and a supportive environment that values diverse perspectives and innovative thinking.
+                        </p>
+                        <a href="#" class="service-link mt-3">
+                            Explore Career Opportunities <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <div class="container">
+                <h2 class="cta-title">Ready to Transform Your Business?</h2>
+                <p class="cta-text">
+                    Let's discuss how Embark can help you achieve your strategic objectives through innovative digital solutions.
+                </p>
+                <a href="mailto:contact@embarksoftware.com" class="btn-primary-custom" style="background: white; color: var(--primary-navy); border-color: white;">
+                    Contact Us Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-brand"><span class="brand-accent">Embark</span> Software & Digital</h3>
+                    <p class="footer-description">
+                        A leading independent digital solutions firm delivering strategic technology expertise and world-class design to businesses worldwide.
+                    </p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#who-we-are">Who We Are</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#values">Values</a></li>
+                        <li><a href="#team">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">IT Consulting</a></li>
+                        <li><a href="#">Digital Strategy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Insights</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Whitepapers</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Contact</h5>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@embarksoftware.com">Email Us</a></li>
+                        <li><a href="tel:+15559876543">+1 (555) 987-6543</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Embark Software & Video. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-indicator').style.width = scrolled + '%';
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Animated Counter
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger counter animation for stats
+                    if (entry.target.classList.contains('stat-item')) {
+                        const counter = entry.target.querySelector('.counter');
+                        if (counter && !counter.classList.contains('counted')) {
+                            counter.classList.add('counted');
+                            animateCounter(counter);
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in sections
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Observe stat items
+        document.querySelectorAll('.stat-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Close
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Service Card Hover Effect
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'var(--accent-gold)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'var(--border-gray)';
+            });
+        });
+
+        // Thought Card Click Effect
+        document.querySelectorAll('.thought-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('thought-link')) {
+                    const link = this.querySelector('.thought-link');
+                    if (link) link.click();
+                }
+            });
+        });
+
+        // Add subtle parallax to hero pattern
+        window.addEventListener('scroll', () => {
+            const pattern = document.querySelector('.hero-pattern');
+            const scrolled = window.scrollY;
+            if (pattern) {
+                pattern.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Email link with tracking
+        document.querySelectorAll('a[href^="mailto"]').forEach(link => {
+            link.addEventListener('click', () => {
+                console.log('Contact initiated via email');
+                // Add analytics tracking here if needed
+            });
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            // Trigger any initial animations
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                if (section.getBoundingClientRect().top < window.innerHeight) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
