@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Transformation - Embark Software & Digital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #1a2332;
+            --secondary-navy: #2d3e50;
+            --accent-blue: #3b5998;
+            --accent-gold: #d4af37;
+            --text-gray: #6c757d;
+            --light-gray: #f8f9fa;
+            --border-gray: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--primary-navy);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .navbar-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-navy) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-accent {
+            color: var(--accent-gold);
+        }
+
+        .nav-link {
+            color: var(--primary-navy) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 1.2rem;
+            padding: 0.5rem 0 !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 70vh;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .btn-primary-custom {
+            background: var(--accent-gold);
+            color: white;
+            padding: 1rem 2.8rem;
+            border: 2px solid var(--accent-gold);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary-custom:hover {
+            background: transparent;
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Overview Section */
+        .overview-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .section-text {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .process-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-gray);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent-gold);
+            transition: height 0.4s ease;
+        }
+
+        .process-card:hover::before {
+            height: 100%;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .process-description {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .feature-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-navy) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--primary-navy);
+            padding: 1rem 2.8rem;
+            border: 2px solid white;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-cta:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Progress */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-gold);
+            z-index: 10000;
+            transition: width 0.1s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-accent">Embark</span> Software & Digital
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html#who-we-are">Who We Are</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Insights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 hero-content">
+                    <h2 class="hero-subtitle">Our Services</h2>
+                    <h1 class="hero-title">Digital Transformation</h1>
+                    <p class="hero-description">
+                        End-to-end transformation initiatives that modernize operations and unlock new capabilities. We help organizations leverage technology to innovate, compete, and grow in the digital economy.
+                    </p>
+                    <a href="#contact" class="btn-primary-custom">Start Your Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 fade-in-section">
+                    <h3 class="section-label">What We Do</h3>
+                    <h2 class="section-title">Comprehensive Organizational Transformation</h2>
+                    <p class="section-text">
+                        Digital transformation is more than just implementing new technology—it's about fundamentally reimagining how your organization operates, serves customers, and creates value. Our comprehensive approach addresses people, processes, and technology to drive meaningful, sustainable change.
+                    </p>
+                    <p class="section-text">
+                        We partner with you to develop and execute transformation strategies that align with your business vision. From legacy system modernization to new digital business models, we guide you through every phase of the journey, ensuring your organization emerges more agile, efficient, and competitive.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="text-center mb-5 fade-in-section">
+                <h3 class="section-label">Our Approach</h3>
+                <h2 class="section-title">How We Accomplish Digital Transformation</h2>
+                <p class="section-text">A holistic methodology for sustainable organizational change</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 fade-in-section">
+                    <div class="process-card">
+                        <div class="process-number">01</div>
+                        <h3 class="process-title">Vision & Strategy Development</h3>
+                        <p class="process-description">
+                            We work with your leadership team to define a clear transformation vision aligned with business objectives. Through workshops and strategic planning sessions, we develop a comprehensive roadmap that prioritizes initiatives, identifies quick wins, and establishes measurable success metrics.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 fade-in-section">
+                    <div class="process-card">
+                        <div class="process-number">02</div>
+                        <h3 class="process-title">Process Redesign & Optimization</h3>
+                        <p class="process-description">
+                            We analyze existing workflows and processes to identify inefficiencies and opportunities for improvement. Our team redesigns processes to leverage digital capabilities, eliminate waste, and improve customer experiences. We ensure new processes are scalable and aligned with best practices.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 fade-in-section">
+                    <div class="process-card">
+                        <div class="process-number">03</div>
+                        <h3 class="process-title">Technology Implementation</h3>
+                        <p class="process-description">
+                            We select and implement the right technologies to enable your transformation goals. From cloud platforms to automation tools, we handle system integration, data migration, and infrastructure modernization. Our agile approach delivers value incrementally while minimizing disruption.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 fade-in-section">
+                    <div class="process-card">
+                        <div class="process-number">04</div>
+                        <h3 class="process-title">Change Management & Adoption</h3>
+                        <p class="process-description">
+                            Successful transformation requires people to embrace new ways of working. We develop comprehensive change management programs including training, communication, and support to drive adoption. We measure progress and adjust strategies to ensure sustainable organizational change.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 fade-in-section">
+                    <h3 class="section-label">What You Get</h3>
+                    <h2 class="section-title">Complete Transformation Services</h2>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 fade-in-section">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 class="feature-title">Digital Strategy Development</h4>
+                        <p class="feature-description">
+                            Comprehensive digital strategies that define vision, prioritize initiatives, and create actionable roadmaps for achieving transformation goals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4 class="feature-title">Legacy System Modernization</h4>
+                        <p class="feature-description">
+                            Migration from outdated systems to modern, cloud-based platforms that improve efficiency, reduce costs, and enable innovation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4 class="feature-title">Process Automation</h4>
+                        <p class="feature-description">
+                            Implementation of automation technologies including RPA, AI, and workflow tools to eliminate manual tasks and improve productivity.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4 class="feature-title">Data & Analytics Enablement</h4>
+                        <p class="feature-description">
+                            Building data infrastructure and analytics capabilities to enable data-driven decision making and unlock business insights.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="feature-title">Customer Experience Transformation</h4>
+                        <p class="feature-description">
+                            Redesigning customer touchpoints and interactions to deliver exceptional digital experiences that drive engagement and loyalty.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="feature-title">Organizational Change Management</h4>
+                        <p class="feature-description">
+                            Structured programs to prepare, support, and enable your workforce through the transformation journey with training and adoption support.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <div class="container">
+                <h2 class="cta-title">Ready to Transform Your Organization?</h2>
+                <p class="cta-text">
+                    Let's discuss how comprehensive digital transformation can position your business for long-term success.
+                </p>
+                <a href="mailto:contact@embarksoftware.com" class="btn-cta">
+                    Begin Your Transformation Journey
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-brand"><span class="brand-accent">Embark</span> Software & Digital</h3>
+                    <p class="footer-description">
+                        A leading independent digital solutions firm delivering strategic technology expertise and world-class design to businesses worldwide.
+                    </p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html#who-we-are">Who We Are</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#values">Values</a></li>
+                        <li><a href="index.html#team">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="web-design.html">Web Design</a></li>
+                        <li><a href="development.html">Development</a></li>
+                        <li><a href="consulting.html">IT Consulting</a></li>
+                        <li><a href="transformation.html">Digital Strategy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Insights</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Whitepapers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Contact</h5>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@embarksoftware.com">Email Us</a></li>
+                        <li><a href="tel:+15559876543">+1 (555) 987-6543</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Embark Software & Digital. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-indicator').style.width = scrolled + '%';
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Close
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Parallax effect for hero pattern
+        window.addEventListener('scroll', () => {
+            const pattern = document.querySelector('.hero-pattern');
+            const scrolled = window.scrollY;
+            if (pattern) {
+                pattern.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+
+</body>
+</html>
