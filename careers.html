@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Embark Software & Digital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-navy: #1a2332;
+            --secondary-navy: #2d3e50;
+            --accent-blue: #3b5998;
+            --accent-gold: #d4af37;
+            --text-gray: #6c757d;
+            --light-gray: #f8f9fa;
+            --border-gray: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--primary-navy);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .navbar-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-navy) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-accent {
+            color: var(--accent-gold);
+        }
+
+        .nav-link {
+            color: var(--primary-navy) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 1.2rem;
+            padding: 0.5rem 0 !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue) !important;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-gold) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 70vh;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        /* Culture Section */
+        .culture-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .section-text {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .value-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-gray);
+            transition: all 0.4s ease;
+            position: relative;
+            height: 100%;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent-gold);
+            transition: height 0.4s ease;
+        }
+
+        .value-card:hover::before {
+            height: 100%;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .value-description {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .benefit-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* No Openings Section */
+        .no-openings-section {
+            padding: 6rem 0;
+            background: var(--light-gray);
+            text-align: center;
+        }
+
+        .no-openings-content {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 4rem 3rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-gray);
+        }
+
+        .no-openings-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: var(--accent-gold);
+            font-size: 2.5rem;
+        }
+
+        .no-openings-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .no-openings-text {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            padding: 1rem;
+            border: 2px solid var(--border-gray);
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-gold);
+            box-shadow: none;
+        }
+
+        .btn-submit {
+            background: var(--accent-gold);
+            color: white;
+            padding: 1rem 3rem;
+            border: 2px solid var(--accent-gold);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .btn-submit:hover {
+            background: transparent;
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Progress */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-gold);
+            z-index: 10000;
+            transition: width 0.1s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .no-openings-content {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-accent">Embark</span> Software & Digital
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html#who-we-are">Who We Are</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Insights</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="careers.html">Careers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 hero-content">
+                    <h2 class="hero-subtitle">Join Our Team</h2>
+                    <h1 class="hero-title">Build the Future with Embark</h1>
+                    <p class="hero-description">
+                        We're building a team of exceptional professionals who are passionate about technology, innovation, and creating meaningful impact for our clients. Discover what it's like to work at one of the fastest-growing digital solutions firms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 fade-in-section">
+                    <h3 class="section-label">Our Culture</h3>
+                    <h2 class="section-title">A Place to Grow and Thrive</h2>
+                    <p class="section-text">
+                        At Embark Software & Digital, we've cultivated a culture of excellence, innovation, and collaboration. We believe that our success is directly tied to the growth and fulfillment of our team members. That's why we invest heavily in professional development, mentorship, and creating an environment where great work happens.
+                    </p>
+                    <p class="section-text">
+                        Our team works on challenging projects for leading organizations across industries, gaining exposure to cutting-edge technologies and solving complex business problems. We value diverse perspectives, encourage creative thinking, and celebrate both individual achievements and collective wins.
+                    </p>
+                    <p class="section-text">
+                        We're committed to maintaining a healthy work-life balance while delivering exceptional results for our clients. Our collaborative, supportive environment enables you to do your best work while continuing to learn and advance your career.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="text-center mb-5 fade-in-section">
+                <h3 class="section-label">What We Value</h3>
+                <h2 class="section-title">Our Core Principles</h2>
+                <p class="section-text">The values that guide our work and define our culture</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="value-title">Excellence</h3>
+                        <p class="value-description">
+                            We set high standards for ourselves and our work. Continuous improvement and attention to detail are at the heart of everything we do.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="value-title">Innovation</h3>
+                        <p class="value-description">
+                            We embrace new technologies and creative approaches to solving problems. Fresh ideas and innovative thinking are always welcomed.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="value-title">Collaboration</h3>
+                        <p class="value-description">
+                            We believe the best solutions come from working together. Our team-oriented culture fosters open communication and mutual support.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="value-title">Growth Mindset</h3>
+                        <p class="value-description">
+                            We invest in continuous learning and professional development. Every challenge is an opportunity to expand your skills and knowledge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="value-title">Integrity</h3>
+                        <p class="value-description">
+                            We operate with honesty and transparency in all our interactions. Trust and ethical conduct are non-negotiable principles.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 fade-in-section">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="value-title">Work-Life Balance</h3>
+                        <p class="value-description">
+                            We believe that sustainable success requires balance. We support our team in maintaining healthy, fulfilling lives inside and outside of work.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 fade-in-section">
+                    <h3 class="section-label">Why Join Us</h3>
+                    <h2 class="section-title">Benefits & Perks</h2>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 fade-in-section">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="benefit-title">Professional Development</h4>
+                        <p class="benefit-description">
+                            Access to training programs, conferences, certifications, and continuous learning opportunities to advance your career.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-laptop-house"></i>
+                        </div>
+                        <h4 class="benefit-title">Flexible Work Environment</h4>
+                        <p class="benefit-description">
+                            Remote work options and flexible schedules that support work-life balance and individual productivity preferences.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4 class="benefit-title">Comprehensive Healthcare</h4>
+                        <p class="benefit-description">
+                            Full medical, dental, and vision coverage to ensure you and your family's health and well-being.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h4 class="benefit-title">Mentorship Programs</h4>
+                        <p class="benefit-description">
+                            Structured mentorship and career guidance from experienced professionals to accelerate your growth.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="benefit-title">Cutting-Edge Projects</h4>
+                        <p class="benefit-description">
+                            Work on innovative projects using the latest technologies for leading clients across diverse industries.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 fade-in-section">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h4 class="benefit-title">Competitive Compensation</h4>
+                        <p class="benefit-description">
+                            Market-leading salaries, performance bonuses, and equity opportunities that reward your contributions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- No Current Openings Section -->
+    <section class="no-openings-section">
+        <div class="container">
+            <div class="no-openings-content fade-in-section">
+                <div class="no-openings-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h2 class="no-openings-title">No Current Openings</h2>
+                <p class="no-openings-text">
+                    We currently don't have any open positions, but we're always interested in connecting with talented professionals who share our values and passion for excellence.
+                </p>
+                <p class="no-openings-text">
+                    If you believe you'd be a great fit for our team, we encourage you to reach out. We keep all inquiries on file and will contact you when relevant opportunities become available.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 fade-in-section">
+                    <div class="text-center mb-5">
+                        <h3 class="section-label">Get In Touch</h3>
+                        <h2 class="section-title">Submit Your Information</h2>
+                        <p class="section-text">
+                            Interested in future opportunities? Send us your information and we'll keep you in mind for upcoming positions.
+                        </p>
+                    </div>
+
+                    <form id="careerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="linkedin" class="form-label">LinkedIn Profile</label>
+                            <input type="url" class="form-control" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="position" class="form-label">Position of Interest</label>
+                            <select class="form-control" id="position">
+                                <option value="">Select a position type...</option>
+                                <option value="web-design">Web Designer</option>
+                                <option value="developer">Software Developer</option>
+                                <option value="consultant">IT Consultant</option>
+                                <option value="project-manager">Project Manager</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Tell Us About Yourself *</label>
+                            <textarea class="form-control" id="message" rows="6" required placeholder="Share your background, skills, and why you're interested in Embark..."></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn-submit">Submit Application</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-brand"><span class="brand-accent">Embark</span> Software & Digital</h3>
+                    <p class="footer-description">
+                        A leading independent digital solutions firm delivering strategic technology expertise and world-class design to businesses worldwide.
+                    </p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html#who-we-are">Who We Are</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#values">Values</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="web-design.html">Web Design</a></li>
+                        <li><a href="development.html">Development</a></li>
+                        <li><a href="consulting.html">IT Consulting</a></li>
+                        <li><a href="transformation.html">Digital Strategy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Insights</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Whitepapers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Contact</h5>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@embarksoftware.com">Email Us</a></li>
+                        <li><a href="tel:+15559876543">+1 (555) 987-6543</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Embark Software & Digital. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-indicator').style.width = scrolled + '%';
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Form Submission
+        document.getElementById('careerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('.btn-submit');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                btn.textContent = 'Submitted Successfully! ✓';
+                btn.style.background = 'var(--accent-gold)';
+                
+                // Reset form
+                e.target.reset();
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    btn.style.background = '';
+                }, 3000);
+            }, 1500);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Close
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Parallax effect for hero pattern
+        window.addEventListener('scroll', () => {
+            const pattern = document.querySelector('.hero-pattern');
+            const scrolled = window.scrollY;
+            if (pattern) {
+                pattern.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+
+</body>
+</html>
