@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wayne's Portfolio</title>
+        <style>
+            :root {
+                --bg-color: #008080;
+                /* Classic Teal */
+                --win-gray: #c0c0c0;
+                --win-white: #ffffff;
+                --win-dark: #808080;
+                --win-black: #000000;
+                --win-blue: #000080;
+                --font-main: "MS Sans Serif", "Tahoma", sans-serif;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                image-rendering: pixelated;
+            }
+
+            body {
+                background-color: var(--bg-color);
+                color: var(--win-black);
+                font-family: var(--font-main);
+                overflow-x: hidden;
+                font-size: 14px;
+            }
+
+            /* Parallax Background */
+            .parallax-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 150%;
+                background-image: radial-gradient(
+                    var(--win-dark) 1px,
+                    transparent 1px
+                );
+                background-size: 20px 20px;
+                z-index: -1;
+                opacity: 0.3;
+            }
+
+            /* Navigation / Taskbar */
+            nav {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 30px;
+                background: var(--win-gray);
+                border-top: 2px solid var(--win-white);
+                display: flex;
+                align-items: center;
+                padding: 2px;
+                z-index: 1000;
+                box-shadow:
+                    inset 1px 1px 0 var(--win-white),
+                    inset -1px -1px 0 var(--win-dark);
+            }
+
+            .start-button {
+                height: 22px;
+                padding: 0 5px;
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+                cursor: pointer;
+                margin-right: 10px;
+            }
+
+            .start-button:active {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                gap: 5px;
+                height: 100%;
+                flex-grow: 1;
+            }
+
+            nav ul li {
+                height: 100%;
+            }
+
+            nav ul li a {
+                padding: 0 10px;
+                height: 22px;
+                display: flex;
+                align-items: center;
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                text-decoration: none;
+                color: var(--win-black);
+                font-size: 11px;
+                min-width: 80px;
+            }
+
+            nav ul li.active-task a {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                background: #e0e0e0;
+                box-shadow: inset 1px 1px 0 var(--win-black);
+            }
+
+            /* Hero Section */
+            .hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .window {
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                box-shadow: 1px 1px 0 var(--win-black);
+                min-width: 300px;
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.3s ease;
+            }
+
+            .window.minimized .window-body {
+                display: none;
+            }
+
+            .window.closed {
+                display: none;
+            }
+
+            .title-bar {
+                background: linear-gradient(90deg, var(--win-blue), #1084d0);
+                padding: 3px 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: white;
+                font-weight: bold;
+                cursor: default;
+            }
+
+            .window.inactive .title-bar {
+                background: linear-gradient(90deg, var(--win-dark), #b0b0b0);
+            }
+
+            .title-bar-controls {
+                display: flex;
+                gap: 2px;
+            }
+
+            .title-bar-controls button {
+                width: 16px;
+                height: 14px;
+                background: var(--win-gray);
+                border: 1px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                font-size: 9px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                color: black;
+                font-weight: bold;
+            }
+
+            .title-bar-controls button:active {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                padding: 1px 0 0 1px;
+            }
+
+            .window-body {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .cta-button {
+                margin-top: 15px;
+                padding: 5px 15px;
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                font-weight: bold;
+                cursor: pointer;
+                text-decoration: none;
+                color: var(--win-black);
+                display: inline-block;
+            }
+
+            .cta-button:active {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+            }
+
+            /* Projects Section */
+            .projects {
+                padding: 50px 20px 100px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 30px;
+                color: white;
+                text-shadow: 1px 1px var(--win-black);
+                font-size: 32px;
+            }
+
+            .projects-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .project-card {
+                display: flex;
+                flex-direction: column;
+                transition:
+                    transform 0.1s ease-out,
+                    opacity 0.3s ease;
+            }
+
+            .project-image-container {
+                border: 2px solid;
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                background: var(--win-black);
+                margin-bottom: 10px;
+                overflow: hidden;
+                height: 200px;
+            }
+
+            .project-image-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .tags {
+                margin-top: 10px;
+                display: flex;
+                gap: 5px;
+            }
+
+            .tags span {
+                background: var(--win-gray);
+                border: 1px solid var(--win-dark);
+                padding: 2px 5px;
+                font-size: 11px;
+            }
+
+            /* Contact Section */
+            .contact {
+                padding: 50px 20px 150px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .field-row {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+
+            input,
+            textarea {
+                border: 2px solid;
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                padding: 5px;
+                background: var(--win-white);
+                font-family: var(--font-main);
+            }
+
+            /* Scroll Animation */
+            .reveal {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.5s ease-out;
+            }
+
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            footer {
+                background: var(--win-gray);
+                border-top: 1px solid var(--win-dark);
+                padding: 10px;
+                text-align: center;
+                font-size: 11px;
+                margin-bottom: 30px;
+            }
+
+            .clock {
+                padding: 0 10px;
+                border-left: 1px solid var(--win-dark);
+                font-size: 11px;
+                display: flex;
+                align-items: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="parallax-bg" id="parallax-bg"></div>
+
+        <main>
+            <section id="home" class="hero">
+                <div class="window" id="win-welcome" style="max-width: 450px">
+                    <div class="title-bar">
+                        <div class="title-bar-text">Welcome.exe</div>
+                        <div class="title-bar-controls">
+                            <button
+                                class="btn-min"
+                                onclick="
+                                    windowManage('win-welcome', 'minimize')
+                                "
+                            >
+                                _
+                            </button>
+                            <button class="btn-max">□</button>
+                            <button
+                                class="btn-close"
+                                onclick="windowManage('win-welcome', 'close')"
+                            >
+                                X
+                            </button>
+                        </div>
+                    </div>
+                    <div class="window-body">
+                        <h1>Hi, I'm a Developer</h1>
+                        <p>
+                            I build things for the worldwide web. This page is
+                            optimized for 800x600 resolution and Netscape
+                            Navigator 4.0.
+                        </p>
+                        <a href="#projects" class="cta-button"
+                            >Browse Portfolio</a
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="projects">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <div
+                        class="project-card window reveal"
+                        id="win-project1"
+                        data-parallax="0.1"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">Syntax_Admin.lnk</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project1', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project1', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/project1.png"
+                                    alt="Project 1"
+                                />
+                            </div>
+                            <h3>Syntax Admin</h3>
+                            <p>
+                                A sophisticated dashboard tracking real-time
+                                analytics.
+                            </p>
+                            <div class="tags">
+                                <span>RE-ACT</span>
+                                <span>D3.DLL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="project-card window reveal"
+                        id="win-project2"
+                        data-parallax="-0.1"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">Illuma_Concept.ico</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project2', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project2', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/project2.png"
+                                    alt="Project 2"
+                                />
+                            </div>
+                            <h3>Illuma Concept</h3>
+                            <p>
+                                Branding and mobile experience for a creative
+                                agency.
+                            </p>
+                            <div class="tags">
+                                <span>MOBILE.EXE</span>
+                                <span>UI_UX</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="project-card window reveal"
+                        id="win-project3"
+                        data-parallax="0.05"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">Brand_ID.bmp</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project3', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project3', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/project3.png"
+                                    alt="Project 3"
+                                />
+                            </div>
+                            <h3>Brand Identity</h3>
+                            <p>
+                                Minimalist brand identities for modern
+                                companies.
+                            </p>
+                            <div class="tags">
+                                <span>DESIGN.SYS</span>
+                                <span>MINIMAL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact">
+                <div class="window" id="win-contact" style="width: 400px">
+                    <div class="title-bar">
+                        <div class="title-bar-text">Message_Sender.wizard</div>
+                        <div class="title-bar-controls">
+                            <button
+                                class="btn-min"
+                                onclick="
+                                    windowManage('win-contact', 'minimize')
+                                "
+                            >
+                                _
+                            </button>
+                            <button
+                                class="btn-close"
+                                onclick="windowManage('win-contact', 'close')"
+                            >
+                                X
+                            </button>
+                        </div>
+                    </div>
+                    <div class="window-body">
+                        <p>Send me an electronic mail message.</p>
+                        <br />
+                        <div class="field-row">
+                            <label>Name:</label>
+                            <input type="text" />
+                        </div>
+                        <div class="field-row">
+                            <label>Email:</label>
+                            <input type="email" />
+                        </div>
+                        <div class="field-row">
+                            <label>Message:</label>
+                            <textarea rows="4"></textarea>
+                        </div>
+                        <button class="cta-button">Send Now</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Copyright &copy; 1998 Portfolio. All rights reserved.</p>
+        </footer>
+
+        <nav>
+            <div class="start-button">
+                <strong>Start</strong>
+            </div>
+            <ul id="taskbar-list">
+                <li id="task-win-welcome">
+                    <a href="javascript:windowManage('win-welcome', 'restore')"
+                        >Desktop</a
+                    >
+                </li>
+                <li id="task-win-project1">
+                    <a href="javascript:windowManage('win-project1', 'restore')"
+                        >Syntax_Admin</a
+                    >
+                </li>
+                <li id="task-win-project2">
+                    <a href="javascript:windowManage('win-project2', 'restore')"
+                        >Illuma_Concept</a
+                    >
+                </li>
+                <li id="task-win-project3">
+                    <a href="javascript:windowManage('win-project3', 'restore')"
+                        >Brand_ID</a
+                    >
+                </li>
+                <li id="task-win-contact">
+                    <a href="javascript:windowManage('win-contact', 'restore')"
+                        >Outlook</a
+                    >
+                </li>
+            </ul>
+            <div class="clock" id="clock">10:52 AM</div>
+        </nav>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const parallaxBg = document.getElementById("parallax-bg");
+                const projectCards = document.querySelectorAll(".project-card");
+                const revealElements = document.querySelectorAll(".reveal");
+
+                window.addEventListener("scroll", () => {
+                    const scrolled = window.pageYOffset;
+
+                    // Parallax background movement
+                    parallaxBg.style.transform = `translateY(${scrolled * 0.4}px)`;
+
+                    // Parallax movement for cards
+                    projectCards.forEach((card) => {
+                        if (
+                            card.classList.contains("minimized") ||
+                            card.classList.contains("closed")
+                        )
+                            return;
+
+                        const speed = parseFloat(card.dataset.parallax) || 0;
+                        const rect = card.getBoundingClientRect();
+                        const offset =
+                            (window.innerHeight / 2 -
+                                rect.top -
+                                rect.height / 2) *
+                            speed;
+
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            card.style.transform = `translateY(${offset}px)`;
+                        }
+                    });
+                });
+
+                const revealCallback = (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active");
+                        }
+                    });
+                };
+
+                const revealObserver = new IntersectionObserver(
+                    revealCallback,
+                    {
+                        threshold: 0.1,
+                    },
+                );
+
+                revealElements.forEach((el) => {
+                    revealObserver.observe(el);
+                });
+
+                // Clock
+                setInterval(() => {
+                    const now = new Date();
+                    document.getElementById("clock").textContent =
+                        now.toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                        });
+                }, 1000);
+            });
+
+            function windowManage(id, action) {
+                const win = document.getElementById(id);
+                const task = document.getElementById("task-" + id);
+
+                if (action === "minimize") {
+                    win.classList.add("minimized");
+                    task.classList.remove("active-task");
+                } else if (action === "close") {
+                    win.classList.add("closed");
+                    task.style.display = "none";
+                } else if (action === "restore") {
+                    win.classList.remove("closed");
+                    win.classList.toggle("minimized");
+                    task.style.display = "block";
+
+                    if (!win.classList.contains("minimized")) {
+                        task.classList.add("active-task");
+                        win.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                        });
+                    } else {
+                        task.classList.remove("active-task");
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
