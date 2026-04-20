@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Weekend Review – A Modern Essay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Base reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, "Georgia", "Times New Roman", serif;
+      background-color: #f7f7f5;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      color: #326891;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    .page {
+      max-width: 1040px;
+      width: 100%;
+      background-color: #fff;
+      min-height: 100vh;
+      box-shadow: 0 0 0 1px #e2e2e2;
+    }
+
+    header {
+      border-bottom: 1px solid #e2e2e2;
+      padding: 18px 40px 10px;
+    }
+
+    .masthead {
+      text-align: center;
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .masthead-title {
+      font-size: 32px;
+      letter-spacing: 0.18em;
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .masthead-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    nav {
+      margin-top: 18px;
+      border-top: 1px solid #e2e2e2;
+      padding-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    nav a {
+      color: #444;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    /* Article layout */
+    main {
+      padding: 32px 40px 60px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 24px 18px 40px;
+      }
+
+      header {
+        padding: 16px 18px 10px;
+      }
+    }
+
+    article {
+      max-width: 680px;
+    }
+
+    .kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .headline {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .subheadline {
+      font-size: 17px;
+      color: #555;
+      margin-bottom: 18px;
+      max-width: 520px;
+    }
+
+    .byline {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .byline span {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      color: #777;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 22px;
+    }
+
+    .social-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .social-btn {
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background-color: #fafafa;
+      cursor: pointer;
+    }
+
+    .social-btn:hover {
+      background-color: #f0f0f0;
+    }
+
+    .hero-image {
+      margin: 24px 0 18px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      display: block;
+    }
+
+    .hero-caption {
+      font-size: 11px;
+      color: #777;
+      margin-top: 6px;
+    }
+
+    .hero-caption span {
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+    }
+
+    .article-body {
+      font-size: 17px;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: #222;
+    }
+
+    .article-body p {
+      margin-bottom: 18px;
+    }
+
+    .article-body p.lede {
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .article-body h2 {
+      font-size: 22px;
+      margin: 32px 0 12px;
+      font-weight: 600;
+    }
+
+    .article-body blockquote {
+      border-left: 3px solid #e2e2e2;
+      padding-left: 16px;
+      margin: 24px 0;
+      font-style: italic;
+      color: #555;
+    }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 30px 0;
+    }
+
+    .tag-list {
+      margin-top: 26px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .tag-list span {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      margin-right: 6px;
+    }
+
+    .tag-list a {
+      margin-right: 8px;
+      color: #555;
+    }
+
+    /* Sidebar */
+    aside {
+      border-left: 1px solid #f0f0f0;
+      padding-left: 24px;
+    }
+
+    @media (max-width: 900px) {
+      aside {
+        border-left: none;
+        border-top: 1px solid #f0f0f0;
+        padding-left: 0;
+        padding-top: 24px;
+        margin-top: 16px;
+      }
+    }
+
+    .sidebar-section {
+      margin-bottom: 32px;
+    }
+
+    .sidebar-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-article {
+      margin-bottom: 14px;
+    }
+
+    .sidebar-article a {
+      font-size: 14px;
+      color: #111;
+      font-family: "Georgia", "Times New Roman", serif;
+    }
+
+    .sidebar-article a:hover {
+      text-decoration: underline;
+    }
+
+    .sidebar-article span {
+      display: block;
+      font-size: 11px;
+      color: #999;
+      margin-top: 2px;
+    }
+
+    .newsletter-box {
+      border: 1px solid #e2e2e2;
+      padding: 14px 14px 16px;
+      background-color: #fafafa;
+      font-size: 13px;
+    }
+
+    .newsletter-box h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #555;
+    }
+
+    .newsletter-box p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .newsletter-box input[type="email"] {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .newsletter-box button {
+      width: 100%;
+      padding: 8px 10px;
+      border: none;
+      background-color: #326891;
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+
+    .newsletter-box button:hover {
+      background-color: #244a66;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e2e2e2;
+      padding: 18px 40px 26px;
+      font-size: 11px;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    footer a {
+      color: #777;
+      margin-right: 10px;
+    }
+
+    footer a:hover {
+      color: #000;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 700px) {
+      footer {
+        padding: 16px 18px 22px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-right {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="masthead">
+        <div class="masthead-subtitle">Weekend Edition</div>
+        <div class="masthead-title">The Daily Essay</div>
+        <div class="masthead-subtitle">Ideas · Culture · Cities</div>
+      </div>
+      <nav>
+        <a href="#">News</a>
+        <a href="#">Opinion</a>
+        <a href="#">Culture</a>
+        <a href="#">Tech</a>
+        <a href="#">Style</a>
+        <a href="#">Travel</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <div class="kicker">Urban Notes</div>
+        <h1 class="headline">On Quiet Mornings in a City That Never Stops Talking</h1>
+        <div class="subheadline">
+          In the spaces between notifications, traffic lights and late-night sirens, a different kind of conversation begins.
+        </div>
+
+        <div class="byline">
+          <span>By</span> Wayne
+        </div>
+        <div class="meta">
+          Published April 19, 2026 · New York / Denver / Somewhere In Between
+        </div>
+
+        <div class="social-bar">
+          <button class="social-btn">Share</button>
+          <button class="social-btn">Email</button>
+          <button class="social-btn">Save</button>
+        </div>
+
+        <div class="hero-image">
+          <img src="https://via.placeholder.com/1200x650/eeeeee/999999?text=City+Morning+Skyline" alt="City skyline at sunrise" />
+          <div class="hero-caption">
+            A city block just before the day decides what it wants to be. <span>Photograph</span> via Placeholder
+          </div>
+        </div>
+
+        <div class="article-body">
+          <p class="lede">
+            The city is loud, but its first language is quiet. Before the espresso machines hiss, before the subway
+            platforms fill with the choreography of impatience, there is a brief, almost secret hour when the streets
+            feel like a draft the day hasn’t edited yet.
+          </p>
+
+          <p>
+            If you walk then—no headphones, no podcast, no agenda—you start to notice how much of urban life is written
+            in the margins. The florist taping a handwritten sign to the door. The cab driver leaning on the hood of
+            the car, coffee in one hand, the other tracing invisible shapes in the air as they talk to no one in
+            particular. The way the light hits the brick on the building you’ve passed a thousand times and never really
+            seen.
+          </p>
+
+          <p>
+            We talk about cities as if they are machines: engines of productivity, networks of infrastructure, systems
+            to be optimized. But on these quiet mornings, the city feels less like a machine and more like a book that
+            everyone is writing at once—some of us in bold headlines, most of us in footnotes.
+          </p>
+
+          <h2>What the city says when it isn’t performing</h2>
+
+          <p>
+            There is a performance to city life. We dress for it, schedule for it, post about it. We curate our routes
+            and our routines, choosing the coffee shop with the right kind of background noise, the subway car with the
+            best odds of a seat and the lowest odds of eye contact.
+          </p>
+
+          <p>
+            But the city offstage is different. It’s the delivery worker stretching their back on an empty sidewalk. It’s
+            the barista counting the float in the register before the first order. It’s the neighbor you only ever see
+            through a window, watering a plant that has somehow survived three winters.
+          </p>
+
+          <blockquote>
+            In the quiet, you realize the city isn’t just where you live. It’s how you live with other people you may
+            never meet, but whose choices keep brushing up against your own.
+          </blockquote>
+
+          <p>
+            These are not the moments that make it into tourist guides or real estate brochures. They don’t trend. They
+            don’t go viral. But they are the connective tissue that keeps a place from becoming just another backdrop
+            for someone else’s story.
+          </p>
+
+          <h2>Attention as a form of citizenship</h2>
+
+          <p>
+            We tend to think of citizenship as something formal: voting, paying taxes, serving on a jury. But in a city,
+            there is another, quieter kind of citizenship that begins with attention. To notice the person struggling
+            with a stroller at the subway stairs. To remember the name of the person who hands you your coffee every
+            morning. To look up from your screen long enough to realize the trees on your block have started to bloom.
+          </p>
+
+          <p>
+            None of this is grand. None of it will be recorded in any official ledger. And yet, these small acts of
+            noticing are what keep a city from dissolving into pure transaction. They are how we say to one another:
+            you exist here, too.
+          </p>
+
+          <p>
+            On quiet mornings, when the city is still deciding what kind of day it wants to be, you get to practice this
+            kind of citizenship without the usual rush. You can walk a little slower. You can let your curiosity set the
+            pace instead of your calendar.
+          </p>
+
+          <hr />
+
+          <p>
+            Maybe that’s the real luxury in a place that prides itself on never sleeping: not the corner office or the
+            skyline view, but the ability to step outside before the performance begins and listen to the city clear its
+            throat.
+          </p>
+
+          <p>
+            Tomorrow, the noise will return. The trains will be late. The inbox will refill. The city will go back to
+            speaking in headlines. But if you’ve heard its quieter language, even once, you start to realize you can
+            carry that silence with you—like a folded note in your pocket, waiting to be read again.
+          </p>
+
+          <div class="tag-list">
+            <span>Tags</span>
+            <a href="#">Cities</a>
+            <a href="#">Urban Life</a>
+            <a href="#">Morning</a>
+            <a href="#">Reflection</a>
+          </div>
+        </div>
+      </article>
+
+      <aside>
+        <div class="sidebar-section">
+          <div class="sidebar-title">More in Urban Notes</div>
+          <div class="sidebar-article">
+            <a href="#">The Art of Getting Lost on Purpose in Your Own Neighborhood</a>
+            <span>4 min read</span>
+          </div>
+          <div class="sidebar-article">
+            <a href="#">Why the Best Conversations Happen on Side Streets</a>
+            <span>6 min read</span>
+          </div>
+          <div class="sidebar-article">
+            <a href="#">What We Owe the Places We Outgrow</a>
+            <span>7 min read</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Editor’s Picks</div>
+          <div class="sidebar-article">
+            <a href="#">The Case for Doing One Thing Slowly</a>
+            <span>Opinion</span>
+          </div>
+          <div class="sidebar-article">
+            <a href="#">How Cities Remember What We Forget</a>
+            <span>Essay</span>
+          </div>
+          <div class="sidebar-article">
+            <a href="#">The Secret Life of Empty Parks</a>
+            <span>Culture</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="newsletter-box">
+            <h3>Sign up for the Weekend Review</h3>
+            <p>
+              A short, thoughtful newsletter on cities, attention and the small details that make a day feel like yours.
+            </p>
+            <form>
+              <input type="email" placeholder="Enter your email" />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="footer-left">
+        <span>© <span id="year"></span> Wayne · The Daily Essay</span>
+      </div>
+      <div class="footer-right">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

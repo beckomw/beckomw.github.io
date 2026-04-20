@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:        #ECE8DF;
+    --ink-mid:    #B0A99A;
+    --ink-faint:  #524E46;
+    --paper:      #0F0E0B;
+    --paper-warm: #161410;
+    --paper-lift: #1E1B14;
+    --paper-card: #242018;
+    --rule:       #2A2720;
+    --rule-mid:   #363128;
+    --accent:     #C8A96E;
+    --accent-dim: #7A6438;
+    --red:        #B84438;
+    --serif:      'Playfair Display', Georgia, serif;
+    --body:       'Source Serif 4', Georgia, serif;
+    --mono:       'DM Mono', monospace;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; text-decoration: none; cursor: pointer; }
+  a:hover { color: var(--accent); }
+  img { display: block; width: 100%; height: auto; }
+
+  /* ─── READING PROGRESS ─── */
+  #progress {
+    position: fixed; top: 0; left: 0;
+    height: 2px; width: 0;
+    background: var(--accent);
+    z-index: 999;
+    transition: width 0.08s linear;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center;
+    overflow: hidden; height: 36px;
+  }
+  .ticker-badge {
+    background: var(--accent); color: var(--paper);
+    font-family: var(--mono); font-size: 0.58rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0 1rem; height: 100%;
+    display: flex; align-items: center;
+    flex-shrink: 0; white-space: nowrap;
+  }
+  .ticker-scroll {
+    overflow: hidden; flex: 1;
+  }
+  .ticker-track {
+    display: flex; gap: 2.5rem;
+    animation: scroll-ticker 35s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track span {
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.05em; color: var(--ink-mid);
+  }
+  .ticker-track .dot { color: var(--rule-mid); }
+  @keyframes scroll-ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead { border-bottom: 1px solid var(--rule); }
+
+  .mast-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.65rem 2.5rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.1em; color: var(--ink-faint);
+  }
+  .mast-meta .tagline { color: var(--accent); letter-spacing: 0.14em; }
+  .mast-meta .actions a { margin-left: 1.2rem; }
+  .mast-meta .actions a:hover { color: var(--ink); }
+
+  .mast-title {
+    text-align: center;
+    padding: 2.8rem 2.5rem 2rem;
+  }
+  .pub-name {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    font-weight: 900; letter-spacing: -0.025em; line-height: 1;
+    color: var(--ink);
+  }
+  .pub-ornament {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin: 1.1rem auto 0; max-width: 560px;
+  }
+  .pub-ornament .line { flex: 1; height: 1px; background: var(--rule-mid); }
+  .pub-ornament .motto {
+    font-family: var(--body); font-style: italic;
+    font-size: 0.82rem; color: var(--ink-mid);
+    white-space: nowrap;
+  }
+
+  .mast-nav {
+    display: flex; justify-content: center;
+    border-top: 1px solid var(--rule);
+    overflow-x: auto; flex-wrap: nowrap;
+  }
+  .mast-nav a {
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-mid); padding: 0.7rem 1.4rem;
+    border-right: 1px solid var(--rule);
+    transition: color 0.2s; white-space: nowrap;
+  }
+  .mast-nav a:first-child { border-left: 1px solid var(--rule); }
+  .mast-nav a:hover { color: var(--ink); }
+  .mast-nav a.active { color: var(--accent); }
+
+  /* ─── SECTION LABEL ─── */
+  .section-head {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.8rem 2.5rem 1.4rem;
+    max-width: 1340px; margin: 0 auto;
+  }
+  .section-head .lbl {
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-mid); white-space: nowrap;
+  }
+  .section-head .hr { flex: 1; height: 1px; background: var(--rule); }
+
+  /* ─── HERO ─── */
+  .hero {
+    max-width: 1340px; margin: 0 auto;
+    padding: 0 2.5rem 0;
+    display: grid; grid-template-columns: 55% 1fr;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-text {
+    padding: 3rem 3.5rem 3rem 0;
+    border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .kicker {
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.1rem;
+  }
+  .hero-hed {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .hero-dek {
+    font-size: 1rem; font-style: italic; font-weight: 300;
+    color: var(--ink-mid); line-height: 1.7;
+    margin-bottom: 1.8rem;
+  }
+  .byline {
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.07em; color: var(--ink-mid);
+    display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;
+  }
+  .byline .name { color: var(--ink); }
+  .byline .sep { color: var(--rule-mid); }
+  .read-more {
+    display: inline-block; margin-top: 2rem;
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--accent-dim);
+    padding-bottom: 2px; transition: border-color 0.2s;
+  }
+  .read-more:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-media {
+    padding: 3rem 0 3rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .img-box {
+    background: var(--paper-lift);
+    border: 1px solid var(--rule);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .img-box.ratio-4-3 { aspect-ratio: 4/3; }
+  .img-box.ratio-16-9 { aspect-ratio: 16/9; }
+  .img-box.ratio-1-1  { aspect-ratio: 1/1; }
+  .img-box img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .img-box .placeholder-lbl {
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .img-caption {
+    margin-top: 0.55rem; padding-top: 0.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.04em; color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  /* ─── ARTICLE GRID ─── */
+  .grid-3 {
+    max-width: 1340px; margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid; grid-template-columns: repeat(3,1fr);
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+  .card {
+    padding: 2rem;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 0.7rem;
+    transition: background 0.18s;
+  }
+  .card:hover { background: var(--paper-warm); }
+  .card .kicker { margin-bottom: 0; }
+  .card-img { margin-bottom: 0.3rem; }
+  .card-hed {
+    font-family: var(--serif); font-size: 1.15rem;
+    font-weight: 600; line-height: 1.25; color: var(--ink);
+  }
+  .card-dek {
+    font-size: 0.85rem; color: var(--ink-mid);
+    line-height: 1.65; flex: 1;
+  }
+  .card-meta {
+    font-family: var(--mono); font-size: 0.58rem;
+    letter-spacing: 0.06em; color: var(--ink-faint);
+    display: flex; gap: 0.6rem;
+  }
+
+  /* ─── TWO-COL: OPINION + SIDEBAR ─── */
+  .two-col {
+    max-width: 1340px; margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid; grid-template-columns: 1fr 340px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .opinions {
+    padding: 2.5rem 3rem 2.5rem 0;
+    border-right: 1px solid var(--rule);
+  }
+  .sidebar {
+    padding: 2.5rem 0 2.5rem 2.5rem;
+  }
+  .col-label {
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-mid); margin-bottom: 1.4rem;
+    padding-bottom: 0.7rem; border-bottom: 1px solid var(--rule);
+  }
+
+  /* Opinion items */
+  .opinion-item {
+    display: grid; grid-template-columns: 52px 1fr;
+    gap: 1rem; padding: 1.3rem 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer; transition: background 0.15s;
+  }
+  .opinion-item:first-of-type { padding-top: 0; }
+  .opinion-item:last-child { border-bottom: none; }
+  .opinion-item:hover { color: var(--accent); }
+  .avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--paper-lift); border: 1px solid var(--rule-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 1rem; color: var(--ink-mid);
+    flex-shrink: 0;
+  }
+  .op-author {
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  .op-hed {
+    font-family: var(--serif); font-size: 0.95rem;
+    font-weight: 600; line-height: 1.3; color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+  .op-dek { font-size: 0.8rem; color: var(--ink-mid); line-height: 1.5; }
+
+  /* Sidebar most-read */
+  .most-read { list-style: none; }
+  .most-read li {
+    display: flex; gap: 0.9rem; align-items: baseline;
+    padding: 0.9rem 0; border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+  }
+  .most-read li:last-child { border-bottom: none; }
+  .most-read li:hover .mr-hed { color: var(--accent); }
+  .mr-num {
+    font-family: var(--serif); font-size: 2rem;
+    font-weight: 700; color: var(--ink-faint);
+    flex-shrink: 0; line-height: 1;
+  }
+  .mr-hed {
+    font-family: var(--serif); font-size: 0.88rem;
+    font-weight: 400; line-height: 1.4; color: var(--ink);
+    transition: color 0.15s;
+  }
+  .mr-hed span {
+    display: block; font-family: var(--mono); font-size: 0.58rem;
+    letter-spacing: 0.07em; color: var(--ink-faint); margin-top: 0.2rem;
+  }
+
+  /* ─── ARTICLE READING OVERLAY ─── */
+  .overlay {
+    position: fixed; inset: 0;
+    background: var(--paper);
+    z-index: 200; overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+    visibility: hidden;
+  }
+  .overlay.open {
+    transform: translateY(0); visibility: visible;
+  }
+  .overlay-bar {
+    position: sticky; top: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 10;
+  }
+  .overlay-pub {
+    font-family: var(--serif); font-size: 1.3rem; font-weight: 700;
+  }
+  .close-btn {
+    background: none; border: 1px solid var(--rule-mid);
+    color: var(--ink-mid); font-family: var(--mono);
+    font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.42rem 1rem; cursor: pointer; transition: all 0.15s;
+  }
+  .close-btn:hover { border-color: var(--ink-mid); color: var(--ink); }
+
+  .article-body {
+    max-width: 700px; margin: 0 auto;
+    padding: 3.5rem 2rem 6rem;
+  }
+  .article-body .kicker { font-size: 0.68rem; margin-bottom: 1.2rem; }
+  .article-title {
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+    font-weight: 700; line-height: 1.08;
+    letter-spacing: -0.025em; margin-bottom: 1.2rem; color: var(--ink);
+  }
+  .article-deck {
+    font-size: 1.1rem; font-style: italic; font-weight: 300;
+    color: var(--ink-mid); line-height: 1.65;
+    padding-bottom: 1.8rem; margin-bottom: 1.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-byline {
+    display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.07em; color: var(--ink-mid);
+    margin-bottom: 2.5rem;
+  }
+  .article-byline .name { color: var(--ink); }
+  .article-byline .sep { color: var(--rule-mid); }
+
+  .article-body p {
+    font-size: 1.06rem; line-height: 1.85;
+    margin-bottom: 1.5rem; color: var(--ink);
+  }
+  .article-body p:first-of-type::first-letter {
+    font-family: var(--serif); font-size: 4.2em; font-weight: 900;
+    float: left; line-height: 0.8;
+    margin: 0.05em 0.1em 0 0; color: var(--accent);
+  }
+  .pull-quote {
+    margin: 2.8rem 0; padding: 0 0 0 2rem;
+    border-left: 3px solid var(--accent);
+  }
+  .pull-quote blockquote {
+    font-family: var(--serif); font-size: 1.5rem;
+    font-style: italic; line-height: 1.4; color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .pull-quote cite {
+    font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid);
+  }
+  .article-img {
+    margin: 2.5rem 0;
+  }
+  .article-img .img-caption { margin-top: 0.5rem; }
+
+  /* ─── NEWSLETTER STRIP ─── */
+  .newsletter {
+    background: var(--paper-lift);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+  .newsletter .kicker { justify-content: center; display: flex; }
+  .newsletter h3 {
+    font-family: var(--serif); font-size: 1.9rem; font-weight: 700;
+    color: var(--ink); margin: 0.75rem 0 0.5rem;
+  }
+  .newsletter p {
+    font-size: 0.9rem; color: var(--ink-mid); margin-bottom: 1.6rem;
+  }
+  .subscribe-row {
+    display: flex; gap: 0; max-width: 480px; margin: 0 auto;
+  }
+  .subscribe-row input {
+    flex: 1; background: var(--paper); border: 1px solid var(--rule-mid);
+    border-right: none; color: var(--ink); font-family: var(--mono);
+    font-size: 0.75rem; padding: 0.75rem 1rem; outline: none;
+  }
+  .subscribe-row input::placeholder { color: var(--ink-faint); }
+  .subscribe-row input:focus { border-color: var(--accent); }
+  .subscribe-row button {
+    background: var(--accent); border: 1px solid var(--accent);
+    color: var(--paper); font-family: var(--mono);
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.75rem 1.4rem; cursor: pointer; transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .subscribe-row button:hover { background: var(--ink); border-color: var(--ink); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    max-width: 1340px; margin: 0 auto;
+    padding: 3rem 2.5rem 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.6fr repeat(3,1fr);
+    gap: 3rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .footer-brand .pub-name { font-size: 2rem; margin-bottom: 0.75rem; }
+  .footer-brand p {
+    font-size: 0.82rem; color: var(--ink-mid);
+    line-height: 1.65; margin-bottom: 1rem;
+  }
+  .footer-col h4 {
+    font-family: var(--mono); font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-mid); margin-bottom: 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li {
+    font-size: 0.83rem; color: var(--ink-mid);
+    margin-bottom: 0.45rem; cursor: pointer;
+  }
+  .footer-col li:hover { color: var(--ink); }
+  .footer-bottom {
+    margin-top: 1.8rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.58rem;
+    letter-spacing: 0.06em; color: var(--ink-faint);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { border-right: none; border-bottom: 1px solid var(--rule); padding: 2.5rem 0; }
+    .hero-media { padding: 2rem 0; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .opinions { border-right: none; border-bottom: 1px solid var(--rule); padding-right: 0; }
+    .sidebar { padding-left: 0; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 640px) {
+    .mast-meta { padding: 0.6rem 1.2rem; }
+    .mast-meta .actions { display: none; }
+    .hero, .section-head, .grid-3, .two-col, .newsletter, footer { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .pub-name { font-size: 2.6rem; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .mast-nav a { padding: 0.6rem 0.9rem; font-size: 0.55rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- TICKER BAR -->
+<div class="ticker">
+  <div class="ticker-badge">Breaking</div>
+  <div class="ticker-scroll">
+    <div class="ticker-track" id="ticker-track">
+      <span>Global summit reaches accord on carbon targets</span><span class="dot">·</span>
+      <span>Markets edge higher on softer inflation data</span><span class="dot">·</span>
+      <span>Scientists unveil quantum computing milestone</span><span class="dot">·</span>
+      <span>Major cities unveil sweeping transit reforms</span><span class="dot">·</span>
+      <span>Three central banks move in lockstep on rates</span><span class="dot">·</span>
+      <span>Global summit reaches accord on carbon targets</span><span class="dot">·</span>
+      <span>Markets edge higher on softer inflation data</span><span class="dot">·</span>
+      <span>Scientists unveil quantum computing milestone</span><span class="dot">·</span>
+      <span>Major cities unveil sweeping transit reforms</span><span class="dot">·</span>
+      <span>Three central banks move in lockstep on rates</span><span class="dot">·</span>
+    </div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="mast-meta">
+    <span id="today"></span>
+    <span class="tagline">Independent thought, rigorously examined</span>
+    <span class="actions">
+      <a href="#">Subscribe</a>
+      <a href="#">Sign In</a>
+    </span>
+  </div>
+  <div class="mast-title">
+    <div class="pub-name">The Editorial</div>
+    <div class="pub-ornament">
+      <span class="line"></span>
+      <span class="motto">Est. 2024 — Journalism of Consequence</span>
+      <span class="line"></span>
+    </div>
+  </div>
+  <nav class="mast-nav">
+    <a href="#" class="active">World</a>
+    <a href="#">Politics</a>
+    <a href="#">Technology</a>
+    <a href="#">Science</a>
+    <a href="#">Culture</a>
+    <a href="#">Opinion</a>
+    <a href="#">Climate</a>
+    <a href="#">Economy</a>
+    <a href="#">Arts</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="section-head">
+  <span class="lbl">Lead Story</span>
+  <span class="hr"></span>
+</div>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="kicker">World Affairs</p>
+    <h1 class="hero-hed">The Long Reckoning: How a Decade of Deferred Decisions Shaped an Uncertain World</h1>
+    <p class="hero-dek">A new generation of leaders inherited promises made by those who never intended to keep them. Now, with the margins grown thin and the clocks running out, they must decide what kind of history they wish to write.</p>
+    <div class="byline">
+      <span class="name">Margaret Holloway</span>
+      <span class="sep">·</span>
+      <span>Senior Correspondent, Brussels</span>
+      <span class="sep">·</span>
+      <span id="hero-date"></span>
+    </div>
+    <a class="read-more" onclick="openArticle()">Continue Reading →</a>
+  </div>
+  <div class="hero-media">
+    <figure>
+      <div class="img-box ratio-4-3">
+        <!-- Replace with: <img src="your-image.jpg" alt="Description"> -->
+        <span class="placeholder-lbl">Hero Image — 1200 × 900 px</span>
+      </div>
+      <p class="img-caption">Place your lead photograph here. Caption text goes below.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ARTICLE GRID -->
+<div class="section-head">
+  <span class="lbl">Today's Stories</span>
+  <span class="hr"></span>
+</div>
+
+<section class="grid-3">
+
+  <article class="card" onclick="openArticle()">
+    <p class="kicker">Science</p>
+    <div class="card-img img-box ratio-16-9">
+      <!-- <img src="science.jpg" alt=""> -->
+      <span class="placeholder-lbl">Article Image</span>
+    </div>
+    <h2 class="card-hed">A New Map of the Brain Rewrites What We Knew About Memory</h2>
+    <p class="card-dek">Researchers have charted neural pathways that challenge long-held models, suggesting memory is far more distributed — and far more fragile — than any textbook ever indicated.</p>
+    <div class="card-meta">
+      <span>Dr. Anita Vasquez</span><span>·</span><span>8 min read</span>
+    </div>
+  </article>
+
+  <article class="card" onclick="openArticle()">
+    <p class="kicker">Economy</p>
+    <div class="card-img img-box ratio-16-9">
+      <!-- <img src="economy.jpg" alt=""> -->
+      <span class="placeholder-lbl">Article Image</span>
+    </div>
+    <h2 class="card-hed">The Invisible Recession That Statistics Cannot See</h2>
+    <p class="card-dek">Official figures tell one story. The lines at food banks, the shuttered storefronts, and the quiet desperation of the service class tell quite another.</p>
+    <div class="card-meta">
+      <span>James Okafor</span><span>·</span><span>12 min read</span>
+    </div>
+  </article>
+
+  <article class="card" onclick="openArticle()">
+    <p class="kicker">Technology</p>
+    <div class="card-img img-box ratio-16-9">
+      <!-- <img src="tech.jpg" alt=""> -->
+      <span class="placeholder-lbl">Article Image</span>
+    </div>
+    <h2 class="card-hed">The Algorithm That Decides What Your Children Believe</h2>
+    <p class="card-dek">Inside the recommendation engines reshaping childhood — and the researchers racing to understand what comes next for a generation raised on curated realities.</p>
+    <div class="card-meta">
+      <span>Priya Subramaniam</span><span>·</span><span>10 min read</span>
+    </div>
+  </article>
+
+  <article class="card" onclick="openArticle()">
+    <p class="kicker">Climate</p>
+    <div class="card-img img-box ratio-16-9">
+      <!-- <img src="climate.jpg" alt=""> -->
+      <span class="placeholder-lbl">Article Image</span>
+    </div>
+    <h2 class="card-hed">The Cities That Are Preparing for a Future No One Wants to Name</h2>
+    <p class="card-dek">From Rotterdam to Singapore, urban planners are quietly abandoning the language of prevention for something more uncomfortable: adaptation, retreat, and managed loss.</p>
+    <div class="card-meta">
+      <span>Elsa Vanhanen</span><span>·</span><span>15 min read</span>
+    </div>
+  </article>
+
+  <article class="card" onclick="openArticle()">
+    <p class="kicker">Culture</p>
+    <div class="card-img img-box ratio-16-9">
+      <!-- <img src="culture.jpg" alt=""> -->
+      <span class="placeholder-lbl">Article Image</span>
+    </div>
+    <h2 class="card-hed">Why the Novel Is Having Its Strangest, Most Necessary Moment in Decades</h2>
+    <p class="card-dek">Sales are up. Reading clubs are full. In an age of short-form everything, long-form fiction has become, for many, an act of resistance.</p>
+    <div class="card-meta">
+      <span>Tobias Marsh</span><span>·</span><span>7 min read</span>
+    </div>
+  </article>
+
+  <article class="card" onclick="openArticle()">
+    <p class="kicker">Politics</p>
+    <div class="card-img img-box ratio-16-9">
+      <!-- <img src="politics.jpg" alt=""> -->
+      <span class="placeholder-lbl">Article Image</span>
+    </div>
+    <h2 class="card-hed">The Coalition No One Saw Coming — And What It Means for the Next Election</h2>
+    <p class="card-dek">A strange alignment of rural conservatives and urban progressives is forcing political scientists to redraw every map they thought they understood.</p>
+    <div class="card-meta">
+      <span>Camille Dubois</span><span>·</span><span>9 min read</span>
+    </div>
+  </article>
+
+</section>
+
+<!-- OPINION + SIDEBAR -->
+<div class="section-head" style="margin-top:0;">
+  <span class="lbl">Opinion &amp; Most Read</span>
+  <span class="hr"></span>
+</div>
+
+<div class="two-col">
+  <div class="opinions">
+    <p class="col-label">Opinion</p>
+
+    <div class="opinion-item" onclick="openArticle()">
+      <div class="avatar">MH</div>
+      <div>
+        <p class="op-author">Margaret Holloway</p>
+        <p class="op-hed">We Keep Calling It a Crisis. Maybe It's Just the New Normal.</p>
+        <p class="op-dek">At some point, the emergency becomes the baseline. When that happens, how do we hold anyone accountable?</p>
+      </div>
+    </div>
+
+    <div class="opinion-item" onclick="openArticle()">
+      <div class="avatar">JO</div>
+      <div>
+        <p class="op-author">James Okafor</p>
+        <p class="op-hed">The Numbers Lie Because We Ask Them To</p>
+        <p class="op-dek">GDP, unemployment, inflation — our most trusted economic gauges were designed for a world that no longer exists.</p>
+      </div>
+    </div>
+
+    <div class="opinion-item" onclick="openArticle()">
+      <div class="avatar">PS</div>
+      <div>
+        <p class="op-author">Priya Subramaniam</p>
+        <p class="op-hed">Silicon Valley Built the Attention Economy. Now It's Surprised by the Damage.</p>
+        <p class="op-dek">Confessions of regret from tech founders are not a substitute for regulation. They are a delay tactic dressed as accountability.</p>
+      </div>
+    </div>
+
+    <div class="opinion-item" onclick="openArticle()">
+      <div class="avatar">TM</div>
+      <div>
+        <p class="op-author">Tobias Marsh</p>
+        <p class="op-hed">What Literature Knows That Journalism Has Forgotten</p>
+        <p class="op-dek">Facts are necessary but insufficient. The deeper truths live in the spaces between them — and fiction has always known where to look.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <p class="col-label">Most Read</p>
+    <ol class="most-read">
+      <li>
+        <span class="mr-num">1</span>
+        <span class="mr-hed">
+          The Cities That Are Preparing for a Future No One Wants to Name
+          <span>Climate · 15 min read</span>
+        </span>
+      </li>
+      <li>
+        <span class="mr-num">2</span>
+        <span class="mr-hed">
+          A New Map of the Brain Rewrites What We Knew About Memory
+          <span>Science · 8 min read</span>
+        </span>
+      </li>
+      <li>
+        <span class="mr-num">3</span>
+        <span class="mr-hed">
+          The Invisible Recession That Statistics Cannot See
+          <span>Economy · 12 min read</span>
+        </span>
+      </li>
+      <li>
+        <span class="mr-num">4</span>
+        <span class="mr-hed">
+          Why the Novel Is Having Its Most Necessary Moment in Decades
+          <span>Culture · 7 min read</span>
+        </span>
+      </li>
+      <li>
+        <span class="mr-num">5</span>
+        <span class="mr-hed">
+          The Coalition No One Saw Coming
+          <span>Politics · 9 min read</span>
+        </span>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <p class="kicker">Daily Briefing</p>
+  <h3>The day's most essential reading, delivered at dawn.</h3>
+  <p>No noise. No sponsored content. Just the stories that matter, in your inbox every morning.</p>
+  <div class="subscribe-row">
+    <input type="email" placeholder="your@email.com">
+    <button>Subscribe</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="pub-name">The Editorial</div>
+      <p>Independent journalism supported by readers. We take no advertising, accept no outside influence, and answer only to the truth as best we can find it.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sections</h4>
+      <ul>
+        <li>World</li><li>Politics</li><li>Technology</li>
+        <li>Science</li><li>Culture</li><li>Climate</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li>About Us</li><li>Editorial Standards</li>
+        <li>Corrections</li><li>Contact</li><li>Careers</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Subscribe</h4>
+      <ul>
+        <li>Daily Newsletter</li><li>Weekly Digest</li>
+        <li>Print Edition</li><li>Podcast</li><li>RSS Feed</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 The Editorial. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Use · Accessibility</span>
+  </div>
+</footer>
+
+<!-- ARTICLE READING OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="overlay-bar">
+    <span class="overlay-pub">The Editorial</span>
+    <button class="close-btn" onclick="closeArticle()">✕ Close</button>
+  </div>
+  <div class="article-body">
+    <p class="kicker">World Affairs</p>
+    <h1 class="article-title">The Long Reckoning: How a Decade of Deferred Decisions Shaped an Uncertain World</h1>
+    <p class="article-deck">A new generation of leaders inherited promises made by those who never intended to keep them. Now, with the margins grown thin and the clocks running out, they must decide what kind of history they wish to write.</p>
+    <div class="article-byline">
+      <span class="name">Margaret Holloway</span>
+      <span class="sep">·</span>
+      <span>Senior Correspondent, Brussels</span>
+      <span class="sep">·</span>
+      <span id="overlay-date"></span>
+    </div>
+
+    <div class="article-img">
+      <div class="img-box ratio-16-9">
+        <!-- <img src="hero.jpg" alt=""> -->
+        <span class="placeholder-lbl">Article Hero Image — 1200 × 675 px</span>
+      </div>
+      <p class="img-caption">Delegates at the summit faced a question no communiqué could answer: who bears the cost of past inaction?</p>
+    </div>
+
+    <p>There is a particular kind of silence that falls over a conference hall when the people inside it realize that the document they are about to sign will be studied, a generation from now, as evidence of failure. Not malice. Not ignorance. Just the slow, collective decision to leave hard things for someone else.</p>
+
+    <p>That silence fell in Geneva last autumn. You could hear it in the pauses between translated sentences, in the shuffling of papers that had already been read, in the way delegates stopped making eye contact with the cameras that lined the walls like patient witnesses.</p>
+
+    <div class="pull-quote">
+      <blockquote>"We are not making decisions for ourselves. We are making decisions for people who cannot yet vote, cannot yet speak, and cannot yet hold us to account."</blockquote>
+      <cite>— Ambassador Helena Voss, closing plenary address</cite>
+    </div>
+
+    <p>The agreement that emerged was, by most technical measures, a success. Emissions targets were set. Timelines were established. Funding mechanisms were outlined. And yet, in the corridors afterward, among the staff who had spent three years drafting the language, there was a muted quality to the celebration — as if everyone understood that the hardest negotiations had been postponed rather than resolved.</p>
+
+    <p>This is the story of how we arrived here: at a moment when the instruments of global governance are more sophisticated than they have ever been, and when confidence in those instruments has never been lower. It is not a story about villains. It is a story about systems — and about what happens when the incentives built into those systems reward delay over action, rhetoric over result, and the appearance of progress over its substance.</p>
+
+    <div class="article-img">
+      <div class="img-box ratio-16-9">
+        <!-- <img src="article-mid.jpg" alt=""> -->
+        <span class="placeholder-lbl">Supporting Image — 1200 × 675 px</span>
+      </div>
+      <p class="img-caption">Secondary photograph with caption. Replace the placeholder with your own image.</p>
+    </div>
+
+    <p>The roots of the current impasse stretch back further than most political analysis acknowledges. The frameworks we rely on today were designed in a different era — one in which national sovereignty was paramount, in which economic growth was assumed to be both unlimited and uniformly desirable, and in which the consequences of industrial civilization were understood as a future problem rather than a present one.</p>
+
+    <p>What changed was not the science, which had been clear for decades. What changed was the politics — and specifically, the emergence of a new generation of voters who had grown up with climate anxiety as a background condition of their lives, who had watched the promised transitions fail to arrive, and who had drawn from that experience a conclusion that older observers found alarming: that the institutions themselves might be unreformable.</p>
+
+    <p>Whether that conclusion is correct remains the central political question of our time. The answer will be written not in Geneva, but in the ten thousand smaller decisions made in the years that follow — in legislatures and boardrooms and courtrooms and living rooms, by people who may never attend a summit but whose choices will determine whether the agreements made there mean anything at all.</p>
+  </div>
+</div>
+
+<script>
+  // Date display
+  const fmt = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+  const ds = new Date().toLocaleDateString('en-US', fmt);
+  document.getElementById('today').textContent = ds;
+  document.getElementById('hero-date').textContent = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  const od = document.getElementById('overlay-date');
+  if(od) od.textContent = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+  // Reading progress
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('overlay');
+    const target = el.classList.contains('open') ? el : document.documentElement;
+    const scrolled = target === el ? el.scrollTop : document.documentElement.scrollTop;
+    const total = (target === el ? el.scrollHeight : document.documentElement.scrollHeight) - window.innerHeight;
+    document.getElementById('progress').style.width = Math.min(100, (scrolled / total) * 100) + '%';
+  });
+
+  // Overlay open/close
+  function openArticle() {
+    const o = document.getElementById('overlay');
+    o.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    o.scrollTop = 0;
+  }
+  function closeArticle() {
+    document.getElementById('overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeArticle(); });
+
+  // Nav active state
+  document.querySelectorAll('.mast-nav a').forEach(a => {
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      document.querySelectorAll('.mast-nav a').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
