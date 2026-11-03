@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wayne's Portfolio</title>
+        <style>
+            :root {
+                --bg-color: #008080;
+                /* Classic Teal */
+                --win-gray: #c0c0c0;
+                --win-white: #ffffff;
+                --win-dark: #808080;
+                --win-black: #000000;
+                --win-blue: #000080;
+                --font-main: "MS Sans Serif", "Tahoma", sans-serif;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                image-rendering: pixelated;
+            }
+
+            body {
+                background-color: var(--bg-color);
+                color: var(--win-black);
+                font-family: var(--font-main);
+                overflow-x: hidden;
+                font-size: 14px;
+            }
+
+            /* Parallax Background */
+            .parallax-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 150%;
+                background-image: radial-gradient(
+                    var(--win-dark) 1px,
+                    transparent 1px
+                );
+                background-size: 20px 20px;
+                z-index: -1;
+                opacity: 0.3;
+            }
+
+            /* Navigation / Taskbar */
+            nav {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 30px;
+                background: var(--win-gray);
+                border-top: 2px solid var(--win-white);
+                display: flex;
+                align-items: center;
+                padding: 2px;
+                z-index: 1000;
+                box-shadow:
+                    inset 1px 1px 0 var(--win-white),
+                    inset -1px -1px 0 var(--win-dark);
+            }
+
+            .start-button {
+                height: 22px;
+                padding: 0 5px;
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+                cursor: pointer;
+                margin-right: 10px;
+            }
+
+            .start-button:active {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                gap: 5px;
+                height: 100%;
+                flex-grow: 1;
+            }
+
+            nav ul li {
+                height: 100%;
+            }
+
+            nav ul li a {
+                padding: 0 10px;
+                height: 22px;
+                display: flex;
+                align-items: center;
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                text-decoration: none;
+                color: var(--win-black);
+                font-size: 11px;
+                min-width: 80px;
+            }
+
+            nav ul li.active-task a {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                background: #e0e0e0;
+                box-shadow: inset 1px 1px 0 var(--win-black);
+            }
+
+            /* Hero Section */
+            .hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .window {
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                box-shadow: 1px 1px 0 var(--win-black);
+                min-width: 300px;
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.3s ease;
+            }
+
+            .window.minimized .window-body {
+                display: none;
+            }
+
+            .window.closed {
+                display: none;
+            }
+
+            .title-bar {
+                background: linear-gradient(90deg, var(--win-blue), #1084d0);
+                padding: 3px 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: white;
+                font-weight: bold;
+                cursor: default;
+            }
+
+            .window.inactive .title-bar {
+                background: linear-gradient(90deg, var(--win-dark), #b0b0b0);
+            }
+
+            .title-bar-controls {
+                display: flex;
+                gap: 2px;
+            }
+
+            .title-bar-controls button {
+                width: 16px;
+                height: 14px;
+                background: var(--win-gray);
+                border: 1px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                font-size: 9px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                color: black;
+                font-weight: bold;
+            }
+
+            .title-bar-controls button:active {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                padding: 1px 0 0 1px;
+            }
+
+            .window-body {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .cta-button {
+                margin-top: 15px;
+                padding: 5px 15px;
+                background: var(--win-gray);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-dark) var(--win-dark)
+                    var(--win-white);
+                font-weight: bold;
+                cursor: pointer;
+                text-decoration: none;
+                color: var(--win-black);
+                display: inline-block;
+            }
+
+            .cta-button:active {
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+            }
+
+            /* Projects Section */
+            .projects {
+                padding: 50px 20px 100px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 30px;
+                color: white;
+                text-shadow: 1px 1px var(--win-black);
+                font-size: 32px;
+            }
+
+            .projects-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .project-card {
+                display: flex;
+                flex-direction: column;
+                transition:
+                    transform 0.1s ease-out,
+                    opacity 0.3s ease;
+            }
+
+            .project-image-container {
+                border: 2px solid;
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                background: var(--win-black);
+                margin-bottom: 10px;
+                overflow: hidden;
+                height: 200px;
+            }
+
+            .project-image-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .tags {
+                margin-top: 10px;
+                display: flex;
+                gap: 5px;
+            }
+
+            .tags span {
+                background: var(--win-gray);
+                border: 1px solid var(--win-dark);
+                padding: 2px 5px;
+                font-size: 11px;
+            }
+
+            /* Contact Section */
+            .contact {
+                padding: 50px 20px 150px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .field-row {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+
+            input,
+            textarea {
+                border: 2px solid;
+                border-color: var(--win-dark) var(--win-white) var(--win-white)
+                    var(--win-dark);
+                padding: 5px;
+                background: var(--win-white);
+                font-family: var(--font-main);
+            }
+
+            /* Scroll Animation */
+            .reveal {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.5s ease-out;
+            }
+
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            footer {
+                background: var(--win-gray);
+                border-top: 1px solid var(--win-dark);
+                padding: 10px;
+                text-align: center;
+                font-size: 11px;
+                margin-bottom: 30px;
+            }
+
+            .clock {
+                padding: 0 10px;
+                border-left: 1px solid var(--win-dark);
+                font-size: 11px;
+                display: flex;
+                align-items: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="parallax-bg" id="parallax-bg"></div>
+
+        <main>
+            <section id="home" class="hero">
+                <div class="window" id="win-welcome" style="max-width: 450px">
+                    <div class="title-bar">
+                        <div class="title-bar-text">Portfolio.exe</div>
+                        <div class="title-bar-controls">
+                            <button
+                                class="btn-min"
+                                onclick="
+                                    windowManage('win-welcome', 'minimize')
+                                "
+                            >
+                                _
+                            </button>
+                            <button class="btn-max">□</button>
+                            <button
+                                class="btn-close"
+                                onclick="windowManage('win-welcome', 'close')"
+                            >
+                                X
+                            </button>
+                        </div>
+                    </div>
+                    <div class="window-body">
+                        <h1>Wayne Beckom - Software Engineer</h1>
+                        <p>
+                            A passion for building reliable systems while bringing a balance of innovation 
+                            and craftsmanship to every project I work on. The projects below are templates, 
+                            examples, or academic projects to display my ideas. 
+
+                        </p>
+                        <a href="#projects" class="cta-button"
+                            >Browse Projects</a
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="projects">
+                <h2 class="section-title">Recent Projects</h2>
+                <div class="projects-grid">
+                    <div
+                        class="project-card window reveal"
+                        id="win-project1"
+                        data-parallax="0.1"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">Recluta.info</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project1', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project1', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/recluta1.png"
+                                    alt="Project 1"
+                                />
+                            </div>
+                            <h3>Recluta.info - Recruiting Software</h3>
+                            <p>
+                                A sophisticated resume and job collection application with AI insights. 
+
+
+                            </p>
+                            <div class="tags">
+                                <span>React</span>
+                                <span>Typescript</span>
+                                <span>SQLite</span>
+                                <a href="https://recluta.info"><span>Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    
+                    
+
+                    <div
+                        class="project-card window reveal"
+                        id="win-project2"
+                        data-parallax="-0.1"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">Embark Software & Video</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project2', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project2', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/embarksoftware.png"
+                                    alt="Project 2"
+                                />
+                            </div>
+                            <h3>Embark Software</h3>
+                            <p>
+                                A design for my local software and video agency. 
+                            </p>
+                            <div class="tags">
+                                <span>React</span>
+                                <span>Vite</span>
+                                <a href="https://beckomw.github.io/embark"><span>Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+                    <div
+                        class="project-card window reveal"
+                        id="win-project2"
+                        data-parallax="-0.1"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">Storynest - DevTool</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project2', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project2', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/storynestimage.png"
+                                    alt="Project 2"
+                                />
+                            </div>
+                            <h3>Storynest</h3>
+                            <p>
+                                A locally hosted platform for developers to share, 
+                                discuss, and refine coding projects through interactive 
+                                storytelling. 
+                            </p>
+                            <div class="tags">
+                                <span>React</span>
+                                <span>Vite</span>
+                                <a href="https://storynestembark.netlify.app/"><span>Link</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+                    <div
+                        class="project-card window reveal"
+                        id="win-project2"
+                        data-parallax="-0.1"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">ColdFront</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project2', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project2', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/coldfrontbanner.png"
+                                    alt="Project 2"
+                                />
+                            </div>
+                            <h3>ColdFront</h3>
+                            <p>
+                               A sales application that focuses on data and volume. 
+                            </p>
+                            <div class="tags">
+                                <span>React</span>
+                                <span>Vite</span>
+                                <a href="#"><span>Coming Soon!</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    
+
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+                    <div
+                        class="project-card window reveal"
+                        id="win-project3"
+                        data-parallax="0.05"
+                    >
+                        <div class="title-bar">
+                            <div class="title-bar-text">CarCar - MondoDB Car Inventory System</div>
+                            <div class="title-bar-controls">
+                                <button
+                                    class="btn-min"
+                                    onclick="
+                                        windowManage('win-project3', 'minimize')
+                                    "
+                                >
+                                    _
+                                </button>
+                                <button class="btn-max">□</button>
+                                <button
+                                    class="btn-close"
+                                    onclick="
+                                        windowManage('win-project3', 'close')
+                                    "
+                                >
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <div class="project-image-container">
+                                <img
+                                    src="assets/CarCar2.jpeg"
+                                    alt="Project 3"
+                                />
+                            </div>
+                            <h3>CarCar</h3>
+                            <p>
+                                A simple inventory management system for businesses. 
+                            </p>
+                            <div class="tags">
+                                <span>Django</span>
+                                <span>React</span>
+                                <span>MongoDB</span>
+                                <span>Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact">
+                <div class="window" id="win-contact" style="width: 400px">
+                    <div class="title-bar">
+                        <div class="title-bar-text">Message_Sender.wizard</div>
+                        <div class="title-bar-controls">
+                            <button
+                                class="btn-min"
+                                onclick="
+                                    windowManage('win-contact', 'minimize')
+                                "
+                            >
+                                _
+                            </button>
+                            <button
+                                class="btn-close"
+                                onclick="windowManage('win-contact', 'close')"
+                            >
+                                X
+                            </button>
+                        </div>
+                    </div>
+                    <div class="window-body">
+                        <p>For more projects or information contact me!</p>
+                        <br />
+              
+                        <a href="mailto:wayne@embarksoftware.tech"><button class="cta-button">Email Me</button></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Copyright &copy; 2026 Portfolio. All rights reserved.</p>
+        </footer>
+
+        <nav>
+            <div class="start-button">
+                <strong>Start</strong>
+            </div>
+            <ul id="taskbar-list">
+                <li id="task-win-welcome">
+                    <a href="javascript:windowManage('win-welcome', 'restore')"
+                        >Desktop</a
+                    >
+                </li>
+                <li id="task-win-project1">
+                    <a href="javascript:windowManage('win-project1', 'restore')"
+                        >Recluta</a
+                    >
+                </li>
+                <li id="task-win-project2">
+                    <a href="javascript:windowManage('win-project2', 'restore')"
+                        >StoryNest</a
+                    >
+                </li>
+                <li id="task-win-project3">
+                    <a href="javascript:windowManage('win-project3', 'restore')"
+                        >CarCar</a
+                    >
+                </li>
+                <li id="task-win-contact">
+                    <a href="javascript:windowManage('win-contact', 'restore')"
+                        >Outlook</a
+                    >
+                </li>
+            </ul>
+            <div class="clock" id="clock">10:52 AM</div>
+        </nav>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const parallaxBg = document.getElementById("parallax-bg");
+                const projectCards = document.querySelectorAll(".project-card");
+                const revealElements = document.querySelectorAll(".reveal");
+
+                window.addEventListener("scroll", () => {
+                    const scrolled = window.pageYOffset;
+
+                    // Parallax background movement
+                    parallaxBg.style.transform = `translateY(${scrolled * 0.4}px)`;
+
+                    // Parallax movement for cards
+                    projectCards.forEach((card) => {
+                        if (
+                            card.classList.contains("minimized") ||
+                            card.classList.contains("closed")
+                        )
+                            return;
+
+                        const speed = parseFloat(card.dataset.parallax) || 0;
+                        const rect = card.getBoundingClientRect();
+                        const offset =
+                            (window.innerHeight / 2 -
+                                rect.top -
+                                rect.height / 2) *
+                            speed;
+
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            card.style.transform = `translateY(${offset}px)`;
+                        }
+                    });
+                });
+
+                const revealCallback = (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active");
+                        }
+                    });
+                };
+
+                const revealObserver = new IntersectionObserver(
+                    revealCallback,
+                    {
+                        threshold: 0.1,
+                    },
+                );
+
+                revealElements.forEach((el) => {
+                    revealObserver.observe(el);
+                });
+
+                // Clock
+                setInterval(() => {
+                    const now = new Date();
+                    document.getElementById("clock").textContent =
+                        now.toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                        });
+                }, 1000);
+            });
+
+            function windowManage(id, action) {
+                const win = document.getElementById(id);
+                const task = document.getElementById("task-" + id);
+
+                if (action === "minimize") {
+                    win.classList.add("minimized");
+                    task.classList.remove("active-task");
+                } else if (action === "close") {
+                    win.classList.add("closed");
+                    task.style.display = "none";
+                } else if (action === "restore") {
+                    win.classList.remove("closed");
+                    win.classList.toggle("minimized");
+                    task.style.display = "block";
+
+                    if (!win.classList.contains("minimized")) {
+                        task.classList.add("active-task");
+                        win.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                        });
+                    } else {
+                        task.classList.remove("active-task");
+                    }
+                }
+            }
+
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+            
+
+        <div class="loading-gimmick-container">
+  <style>
+    .loading-gimmick-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .loading-gimmick-container.active {
+      opacity: 1;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Alternative: If you want to use an actual GIF instead */
+    .loading-gimmick-container img {
+      width: 200px;
+      height: 220px;
+      display: block;
+    }
+  </style>
+
+ 
+ <img src="assets/cyclops-running1.gif" alt="Loading..."> 
+
+  <script>
+    (function() {
+      const loadingGimmick = document.querySelector('.loading-gimmick-container');
+      let scrollTimeout;
+
+      // Show on scroll
+      window.addEventListener('scroll', function() {
+        loadingGimmick.classList.add('active');
+        
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(function() {
+          loadingGimmick.classList.remove('active');
+        }, 500);
+      });
+
+      // Optional: Show on page navigation
+      document.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          if (link.hostname === window.location.hostname && link.href !== window.location.href) {
+            loadingGimmick.classList.add('active');
+          }
+        });
+      });
+    })();
+  </script>
+</div>
+
+
+
+
+
+
+    </body>
+</html>
